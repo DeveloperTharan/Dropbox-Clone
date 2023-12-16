@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -17,10 +17,12 @@ import {
   Cylinder,
   ImageDown,
   PencilLine,
+  Plus,
   Trash,
   Waypoints,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import FolderList from "./FolderList";
 
 export default function MediaSideBar({
   children,
@@ -28,6 +30,7 @@ export default function MediaSideBar({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [Open, setOpen] = useState<boolean>(false);
 
   const menu = [
     {
@@ -38,30 +41,24 @@ export default function MediaSideBar({
     },
     {
       id: 2,
-      name: "Uplode",
-      href: "/uplode",
-      Icon: <Club className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 3,
       name: "Photos",
       href: "/photos",
       Icon: <ImageDown className="h-[14px] w-[14px] font-light" />,
     },
     {
-      id: 4,
+      id: 3,
       name: "Shared",
       href: "/shared",
       Icon: <Waypoints className="h-[14px] w-[14px] font-light" />,
     },
     {
-      id: 5,
+      id: 4,
       name: "Signatured",
       href: "/signatured",
       Icon: <PencilLine className="h-[14px] w-[14px] font-light" />,
     },
     {
-      id: 6,
+      id: 5,
       name: "Deleted",
       href: "/deleted",
       Icon: <Trash className="h-[14px] w-[14px] font-light" />,
@@ -86,7 +83,7 @@ export default function MediaSideBar({
             </section>
           </SheetTitle>
           <SheetDescription>
-            <section className="flex flex-col gap-y-4 mt-3">
+            <section className="flex flex-col gap-y-4 mt-3 border-b-[1px] dark:border-gray-800">
               <div className="flex flex-col pb-3 dark:border-gray-800">
                 {menu.map((menu) => {
                   let active = pathname === menu.href;
@@ -95,10 +92,10 @@ export default function MediaSideBar({
                     <div className="flex flex-col gap-y-4" key={menu.id}>
                       <Link href={menu.href}>
                         <div
-                          className={`flex gap-x-3 justify-start items-center pl-5 py-[10px] w-full hover:bg-neutral-200
-                    dark:hover:bg-gray-800 ${
-                      active ? "bg-neutral-200 dark:bg-gray-800" : ""
-                    }`}
+                          className={`flex gap-x-3 justify-start items-center pl-5 py-[10px] w-full
+                        hover:bg-neutral-200 dark:hover:bg-gray-800 ${
+                          active ? "bg-neutral-200 dark:bg-gray-800" : ""
+                        }`}
                         >
                           <div className="text-[12px] font-light">
                             {menu.Icon}
@@ -111,6 +108,28 @@ export default function MediaSideBar({
                 })}
               </div>
             </section>
+            <section className="flex flex-col mt-3">
+          <div className="flex flex-col gap-y-4">
+            <div
+              className="flex gap-x-3 justify-between items-center pl-5 py-[10px] w-full
+              hover:bg-neutral-200 dark:hover:bg-gray-800 cursor-pointer group"
+              onClick={() => setOpen(!Open)}
+            >
+              <div className="flex gap-x-3 justify-start items-center">
+                <div className="text-[12px] font-light">
+                  <ChevronRight className={`h-[14px] w-[14px] font-light ${Open && "rotate-90"}`} />
+                </div>
+                <div className="text-[13px]">Folders</div>
+              </div>
+              <div 
+                className="opacity-0 group-hover:opacity-100 mr-4 transition duration-300 hover:bg-background
+                p-1 rounded-[5px]">
+                <Plus className="h-[14px] w-[14px] font-light" />
+              </div>
+            </div>
+          </div>
+          {Open ? <FolderList /> : null}
+        </section>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

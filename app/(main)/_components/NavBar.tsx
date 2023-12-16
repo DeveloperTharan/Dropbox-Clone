@@ -32,6 +32,7 @@ export default function NavBar() {
             type="text"
             placeholder="Search"
             className="outline-none w-full bg-transparent"
+            /* onKeyDown={(e) => e.key == "Enter" && console.log(e.target.value)} */
           />
         </div>
         <div className=" flex items-center gap-x-5 pr-6">
@@ -70,7 +71,7 @@ export default function NavBar() {
           </span>
           <span>
             <UserButton
-              afterSignOutUrl="/"
+              afterSignOutUrl="/sign-in"
               appearance={{
                 elements: {
                   avatarBox: "h-6 w-6",
