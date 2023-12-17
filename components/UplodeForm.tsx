@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { useEdgeStore } from "@/lib/edgestore";
 import { Button } from "@/components/ui/button";
-import FilePreview from "./FilePreview";
+import FilePreview from "../app/(main)/(routes)/home/_components/FilePreview";
 
 function UplodeForm({ children }: { children: React.ReactNode }) {
   const [files, setFiles] = useState<any>([]);
@@ -92,7 +92,7 @@ function UplodeForm({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="w-full h-auto min-h-[250px]">
+      <DialogContent className="w-[64rem] h-auto min-h-[250px]">
         <DialogHeader>
           <DialogTitle>Uplode Your File</DialogTitle>
           <DialogDescription className="flex gap-x-1">
@@ -105,7 +105,7 @@ function UplodeForm({ children }: { children: React.ReactNode }) {
         <div
           className={`w-full h-[180px] border-[1px] border-dashed flex flex-col justify-center items-center 
           text-center cursor-pointer group hover:border-neutral-400 ${
-          dragActive ? "bg-blue-200/80 dark:bg-blue-950" : "bg-gray-900/80"
+          dragActive ? "bg-blue-200/80 dark:bg-blue-950" : "bg-gray-300/80 dark:bg-gray-900/80"
           }`}
           onClick={openFileExplorer}
         >

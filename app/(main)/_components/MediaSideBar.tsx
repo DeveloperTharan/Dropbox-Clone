@@ -12,8 +12,6 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ChevronRight,
-  Club,
   Cylinder,
   ImageDown,
   PencilLine,
@@ -22,7 +20,6 @@ import {
   Waypoints,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import FolderList from "./FolderList";
 
 export default function MediaSideBar({
   children,
@@ -108,28 +105,6 @@ export default function MediaSideBar({
                 })}
               </div>
             </section>
-            <section className="flex flex-col mt-3">
-          <div className="flex flex-col gap-y-4">
-            <div
-              className="flex gap-x-3 justify-between items-center pl-5 py-[10px] w-full
-              hover:bg-neutral-200 dark:hover:bg-gray-800 cursor-pointer group"
-              onClick={() => setOpen(!Open)}
-            >
-              <div className="flex gap-x-3 justify-start items-center">
-                <div className="text-[12px] font-light">
-                  <ChevronRight className={`h-[14px] w-[14px] font-light ${Open && "rotate-90"}`} />
-                </div>
-                <div className="text-[13px]">Folders</div>
-              </div>
-              <div 
-                className="opacity-0 group-hover:opacity-100 mr-4 transition duration-300 hover:bg-background
-                p-1 rounded-[5px]">
-                <Plus className="h-[14px] w-[14px] font-light" />
-              </div>
-            </div>
-          </div>
-          {Open ? <FolderList /> : null}
-        </section>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
