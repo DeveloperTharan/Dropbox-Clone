@@ -12,7 +12,7 @@ export default function ToolBar() {
           hover:bg-gray-300/80 hover:dark:bg-gray-900/80 cursor-pointer"
         >
           <ArrowUpFromLine className="h-4 w-4 mt-1 font-light" />
-          <h3 className="absolute bottom-3 text-sm">Uplode</h3>
+          <h3 className="relative top-4 text-sm">Uplode</h3>
         </div>
       </UplodeForm>
       <CreateFolder>
@@ -21,7 +21,7 @@ export default function ToolBar() {
         hover:bg-gray-300/80 hover:dark:bg-gray-900/80 cursor-pointer"
         >
           <FolderClosed className="h-4 w-4 mt-1 font-light" />
-          <h3 className="absolute bottom-3 text-sm">Create Folder</h3>
+          <h3 className="relative top-4 text-sm">Create Folder</h3>
         </div>
       </CreateFolder>
     </div>

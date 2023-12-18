@@ -15,7 +15,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { FolderClosed } from "lucide-react";
 import { Input } from "./ui/input";
-import toast from "react-hot-toast";
 
 export default function UplodeForm({ children }: { children: React.ReactNode }) {
   const [folderName, setFolderName] = useState<String>("");
@@ -37,17 +36,11 @@ export default function UplodeForm({ children }: { children: React.ReactNode }) 
   const OnClickCreate = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setFolderName(folderName);
-    const promise = await setDoc(doc(db, "Folder", docId), {
+    await setDoc(doc(db, "Folder", docId), {
       name: folderName,
       id: docId,
       userId: userId,
     });
-
-    /* toast.promise(promise!, {
-      loading: "Creating Folder...",
-      error: "Error during Creating!",
-      success: `Successfully Created ${folderName}`
-    }) */
   };
 
   return (

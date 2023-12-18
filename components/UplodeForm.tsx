@@ -92,7 +92,7 @@ function UplodeForm({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="w-[64rem] h-auto min-h-[250px]">
+      <DialogContent className="w-[64rem] h-auto max-h-[70%]">
         <DialogHeader>
           <DialogTitle>Uplode Your File</DialogTitle>
           <DialogDescription className="flex gap-x-1">
