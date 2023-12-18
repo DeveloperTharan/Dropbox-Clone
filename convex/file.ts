@@ -29,3 +29,22 @@ export const createFile = mutation({
     return newfile;
   },
 });
+
+//get all documents (non-achived)
+export const getFiles = query({
+  args: {
+    userID: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    //get files from File through userId
+    const files = await ctx.db
+      .query("File")
+      .withIndex("by_user", (query) => query.eq("userID", args.userID))
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("asc")
+      .collect();
+
+    return files;
+  },
+});
