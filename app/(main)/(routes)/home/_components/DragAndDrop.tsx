@@ -36,7 +36,7 @@ export default function DragAndDrop() {
       size: file.size,
       type: file.type,
       url: response.url,
-      userID: userId!,
+      userID: userId! as string,
     });
 
     toast.promise(promise, {

@@ -17,6 +17,8 @@ export const Folder = {
   userID: v.string(),
   name: v.string(),
   parentFolder: v.optional(v.id("Folder")),
+  isArchived: v.boolean(),
+  isFavorite: v.boolean(),
   file: v.optional(
     v.object({
       userID: v.string(),

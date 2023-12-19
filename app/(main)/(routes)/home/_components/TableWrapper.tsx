@@ -60,9 +60,9 @@ export default function TableWrapper({
             ) : (
               <>
                 {fileList?.length === 0 ? (
-                  <TableCaption className="flex text-center items-center justify-center">
-                    No files are there!
-                  </TableCaption>
+                  <TableRow className="relative h-24 w-full flex text-center items-center justify-center">
+                      No results.
+                  </TableRow>
                 ) : (
                   <>
                     {fileList?.map((file) => {

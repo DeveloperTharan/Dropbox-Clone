@@ -32,7 +32,7 @@ export const createFile = mutation({
   },
 });
 
-//get all documents (non-achived)
+//get file (non-achived)
 export const getFiles = query({
   args: {
     userID: v.string(),
@@ -54,6 +54,7 @@ export const getFiles = query({
   },
 });
 
+//create folder
 export const creatrFolder = mutation({
   args: {
     userID: v.string(),
@@ -80,6 +81,31 @@ export const creatrFolder = mutation({
       userID: args.userID,
       parentFolder: args.parentFolder,
       file: args.file,
-    })
+      isArchived: false,
+      isFavorite: false,
+    });
+
+    return newFolder;
+  },
+});
+
+//get folder (non-achive)
+export const getFolders = query({
+  args: {
+    userID: v.string(),
+    parentFolder: v.optional(v.id("Folder")),
+  },
+
+  handler: async (ctx, args) => {
+    const getFolder = await ctx.db
+      .query("Folder")
+      .withIndex("by_parent_folder", (query) =>
+        query.eq("userID", args.userID).eq("parentFolder", args.parentFolder)
+      )
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("asc")
+      .collect();
+
+      return getFolder;
   },
 });

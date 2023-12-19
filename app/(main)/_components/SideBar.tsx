@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, FolderOpenDot, Plus, } from "lucide-react";
+import { ChevronRight, Folder, FolderOpen, Plus, } from "lucide-react";
 import FolderList from "./FolderList";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -23,7 +23,7 @@ export default function SideBar() {
   const handleCreateFolder = () => {
     const promise = createFolder({
       name: "Doc",
-      userID: userId!,
+      userID: userId! as string,
     });
 
     toast.promise(promise, {
@@ -64,7 +64,7 @@ export default function SideBar() {
                         active ? "bg-neutral-200 dark:bg-gray-800" : ""
                       }`}
                     >
-                      <div className="text-[12px] font-light">{menu.Icon}</div>
+                      <div className="h-[14px] w-[14px] font-light">{menu.Icon}</div>
                       <div className="text-[13px]">{menu.name}</div>
                     </div>
                   </Link>
@@ -82,12 +82,13 @@ export default function SideBar() {
               >
                 <div className="text-[12px] font-light">
                   <ChevronRight 
-                    className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer"
+                    className={`h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer 
+                    ${Open && 'rotate-90 transition duration-300 ease-in-out'}`}
                     onClick={() => setOpen(!Open)} 
                   />
                 </div>
                 <div className="text-[12px] font-light">
-                  <FolderOpenDot className="h-4 w-4" />
+                  {!Open ? <Folder className="h-4 w-4" /> : <FolderOpen className="h-4 w-4" />}
                 </div>
                 <div className="text-[13px]">Folders</div>
                 <div className="text-[12px] font-light ml-auto mr-2">

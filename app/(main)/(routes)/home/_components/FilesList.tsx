@@ -10,7 +10,7 @@ import { useAuth } from "@clerk/nextjs";
 export default function FilesList() {
     const { userId } = useAuth()
 
-    const Files = useQuery(api.file.getFiles, { userID: userId! });
+    const Files = useQuery(api.file.getFiles, { userID: userId! as string, });
 
   return (
     <>
