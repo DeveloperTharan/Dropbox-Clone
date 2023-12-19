@@ -82,7 +82,7 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
                   style={{
                     paddingLeft: level ? `${level * 12 + 25}px` : undefined,
                   }}
-                  className={`hidden text-[12px] font-medium text-gray-600
+                  className={`hidden text-[12px] mx-auto font-medium text-gray-600
                 ${expanded && "last:block"} `}
                 >
                   No Folders inside
@@ -97,6 +97,8 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
               <div
                 className="flex flex-col"
                 key={folder?._id}
+                role="button"
+                onClick={() => onRedirect(folder?._id)}
               >
                 <div
                   className={`flex gap-x-3 justify-start items-center pl-12 py-[10px] w-full

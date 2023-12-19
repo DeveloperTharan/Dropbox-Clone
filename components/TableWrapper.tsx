@@ -1,11 +1,9 @@
 "use client";
 
 import React from "react";
-import { FileType } from "@/constants/file-constant";
 import { Doc, Id } from "@/convex/_generated/dataModel";
 import prettyBytes from "pretty-bytes";
 import Link from "next/link";
-import { ArrowDownToLine } from "lucide-react";
 import {
   Table,
   TableBody,

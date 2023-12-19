@@ -6,6 +6,8 @@ import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
 import { useEdgeStore } from "@/lib/edgestore";
 import { toast } from "sonner";
+import { useParams } from "next/navigation";
+import { Id } from "@/convex/_generated/dataModel";
 
 interface CustomFile extends File {
   url?: string;
@@ -16,6 +18,7 @@ export default function DragAndDrop() {
   const [dragActive, setDragActive] = useState<boolean>(false);
 
   const { userId } = useAuth();
+  const params = useParams();
 
   const inputRef = useRef<any>(null);
 
@@ -37,6 +40,7 @@ export default function DragAndDrop() {
       type: file.type,
       url: response.url,
       userID: userId! as string,
+      parentFolder: params.folderId as Id<"Folder">
     });
 
     toast.promise(promise, {
