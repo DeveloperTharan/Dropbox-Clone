@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import MediaSideBar from "./MediaSideBar";
+import { SearchModel } from "@/components/search-model";
 
 export default function NavBar() {
   return (
@@ -21,20 +22,20 @@ export default function NavBar() {
         </MediaSideBar>
       </div>
       <div className="w-full flex justify-around items-center gap-x-4 lg:gap-x-20">
-        <div
-          className="w-full flex justify-start items-center border-[1px] border-gray-200 
-          p-3 gap-x-2 hover:border-gray-900 dark:border-gray-900 dark:hover:border-neutral-400"
-        >
-          <span>
-            <Search className="w-4 h-4 text-gray-500" />
-          </span>
-          <input
-            type="text"
-            placeholder="Search"
-            className="outline-none w-full bg-transparent"
-            /* onKeyDown={(e) => e.key == "Enter" && console.log(e.target.value)} */
-          />
-        </div>
+        <SearchModel>
+          <div
+            className="w-full flex justify-start items-center border-[1px] border-gray-200 
+          p-3 gap-x-2 hover:border-gray-900 dark:border-gray-900 dark:hover:border-neutral-400
+          cursor-text"
+          >
+            <span>
+              <Search className="w-4 h-4 text-gray-500" />
+            </span>
+            <span className="text-gray-500">
+              search
+            </span>
+          </div>
+        </SearchModel>
         <div className=" flex items-center gap-x-5 pr-6">
           <TooltipProvider>
             <Tooltip>

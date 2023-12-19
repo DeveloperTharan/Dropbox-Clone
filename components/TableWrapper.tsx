@@ -36,6 +36,10 @@ export default function TableWrapper({
 }) {
   const fileList = fileslist as FileData[];
 
+  const truncate = (string: string, n: number) => {
+    return string?.length > n ? string.substr(0, n - 1) + "..." : string;
+  };
+
   return (
     <>
       <div className="shadow-[8px] sm:rounded-[10px] border">
@@ -66,6 +70,15 @@ export default function TableWrapper({
                     {fileList?.map((file) => {
                       const type = file?.type as string;
                       const extension: string = type.split("/")[1];
+                      const formatDate = (timestamp: number) => {
+                        const date = new Date(timestamp);
+                        const formattedDate = date.toLocaleString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        });
+                        return formattedDate;
+                      };
 
                       return (
                         <TableRow
@@ -82,8 +95,8 @@ export default function TableWrapper({
                               />
                             </div>
                           </TableCell>
-                          <TableCell>{file?.name}</TableCell>
-                          <TableCell>{file?._creationTime}</TableCell>
+                          <TableCell>{truncate(`${file?.name}`, 30)}</TableCell>
+                          <TableCell>{file ? formatDate(file._creationTime) : '-'}</TableCell>
                           <TableCell className="text-center">
                             {prettyBytes(file?.size as number)}
                           </TableCell>

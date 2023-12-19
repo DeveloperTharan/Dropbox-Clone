@@ -1,4 +1,4 @@
-import { Cylinder, ImageDown, Waypoints, PencilLine, Trash } from "lucide-react";
+import { Cylinder, ImageDown, Waypoints, PencilLine, Trash, FileHeart } from "lucide-react";
 
 export const menu = [
     {
@@ -15,18 +15,24 @@ export const menu = [
     },
     {
       id: 3,
+      name: "Favorites",
+      href: "/favorites",
+      Icon: <FileHeart className="h-[14px] w-[14px] font-light" />,
+    },
+    {
+      id: 4,
       name: "Shared",
       href: "/shared",
       Icon: <Waypoints className="h-[14px] w-[14px] font-light" />,
     },
     {
-      id: 4,
+      id: 5,
       name: "Signatured",
       href: "/signatured",
       Icon: <PencilLine className="h-[14px] w-[14px] font-light" />,
     },
     {
-      id: 5,
+      id: 6,
       name: "Deleted",
       href: "/deleted",
       Icon: <Trash className="h-[14px] w-[14px] font-light" />,
