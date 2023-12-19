@@ -124,13 +124,6 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
                     )}
                   </div>
                   <div className="text-[13px]">{folder?.name}</div>
-                  <div className="text-[12px] font-light ml-auto mr-2">
-                    <Plus
-                      className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer opacity-0 
-                      group-hover:opacity-100 transition delay-300 ease-in-out"
-                      /* onClick={handleCreateFolder} */
-                    />
-                  </div>
                 </div>
                 {expanded[folder._id] && (
                   <FolderList parentFolderId={folder._id} level={level + 1} />

@@ -19,19 +19,6 @@ export const Folder = {
   parentFolder: v.optional(v.id("Folder")),
   isArchived: v.boolean(),
   isFavorite: v.boolean(),
-  file: v.optional(
-    v.object({
-      userID: v.string(),
-      name: v.string(),
-      url: v.string(),
-      size: v.number(),
-      isArchived: v.boolean(),
-      isFavorite: v.boolean(),
-      isSigned: v.boolean(),
-      type: v.string(),
-      parentFolder: v.optional(v.id("Folder")),
-    })
-  ),
 };
 
 export default defineSchema({

@@ -4,35 +4,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, Folder, FolderOpen, Plus, } from "lucide-react";
+import { ChevronRight, Folder, FolderOpen, Plus } from "lucide-react";
 import FolderList from "./FolderList";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { menu } from "@/constants/menu-constant";
-import { useAuth } from "@clerk/nextjs";
-import { toast } from "sonner";
+import CreateFolder from "@/components/createfolder-model";
 
 export default function SideBar() {
   const [Open, setOpen] = useState<boolean>(false);
 
   const pathname = usePathname();
-  const { userId } = useAuth();
-
-  const createFolder = useMutation(api.file.creatrFolder);
-
-  const handleCreateFolder = () => {
-    const promise = createFolder({
-      name: "Doc",
-      userID: userId! as string,
-    });
-
-    toast.promise(promise, {
-      loading: "Creating folder...",
-      success: "Successfully Created!",
-      error: "Error! try again.",
-      duration: 2000
-    })
-  }
 
   return (
     <div
@@ -64,7 +44,9 @@ export default function SideBar() {
                         active ? "bg-neutral-200 dark:bg-gray-800" : ""
                       }`}
                     >
-                      <div className="h-[14px] w-[14px] font-light">{menu.Icon}</div>
+                      <div className="h-[14px] w-[14px] font-light">
+                        {menu.Icon}
+                      </div>
                       <div className="text-[13px]">{menu.name}</div>
                     </div>
                   </Link>
@@ -81,27 +63,32 @@ export default function SideBar() {
               hover:bg-neutral-200 dark:hover:bg-gray-800 group"
               >
                 <div className="text-[12px] font-light">
-                  <ChevronRight 
+                  <ChevronRight
                     className={`h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer 
-                    ${Open && 'rotate-90 transition duration-300 ease-in-out'}`}
-                    onClick={() => setOpen(!Open)} 
+                    ${Open && "rotate-90 transition duration-300 ease-in-out"}`}
+                    onClick={() => setOpen(!Open)}
                   />
                 </div>
                 <div className="text-[12px] font-light">
-                  {!Open ? <Folder className="h-4 w-4" /> : <FolderOpen className="h-4 w-4" />}
+                  {!Open ? (
+                    <Folder className="h-4 w-4" />
+                  ) : (
+                    <FolderOpen className="h-4 w-4" />
+                  )}
                 </div>
                 <div className="text-[13px]">Folders</div>
-                <div className="text-[12px] font-light ml-auto mr-2">
-                  <Plus
-                    className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer opacity-0 
-                    group-hover:opacity-100 transition delay-300 ease-in-out"
-                    onClick={handleCreateFolder}
-                  />
-                </div>
+                <CreateFolder>
+                  <div className="text-[12px] font-light ml-auto mr-2">
+                    <Plus
+                      className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer opacity-0 
+                      group-hover:opacity-100 transition delay-300 ease-in-out"
+                    />
+                  </div>
+                </CreateFolder>
               </div>
             </div>
           </div>
-          {Open === true && <FolderList/>}
+          {Open === true && <FolderList />}
         </section>
       </aside>
     </div>

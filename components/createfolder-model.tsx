@@ -1,0 +1,79 @@
+"use client";
+
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { api } from "@/convex/_generated/api";
+import { useAuth } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+
+export default function CreateFolder({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [name, setName] = useState<string>("Doc");
+  const { userId } = useAuth();
+
+  const createFolder = useMutation(api.file.creatrFolder);
+
+  const handleCreateFolder = () => {
+    setName(name);
+    const promise = createFolder({
+      name: name,
+      userID: userId! as string,
+    });
+
+    toast.promise(promise, {
+      loading: "Creating folder...",
+      success: `Successfully Created! ${name}`,
+      error: "Error! try again.",
+      duration: 2000,
+    });
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="w-full max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Create Folder</DialogTitle>
+        </DialogHeader>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              Name
+            </Label>
+            <Input
+              id="link"
+              defaultValue="Doc"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+        </div>
+        <DialogFooter className="sm:justify-start">
+          <DialogClose asChild>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={handleCreateFolder}
+            >
+              Create
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}

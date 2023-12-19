@@ -60,19 +60,6 @@ export const creatrFolder = mutation({
     userID: v.string(),
     name: v.string(),
     parentFolder: v.optional(v.id("Folder")),
-    file: v.optional(
-      v.object({
-        userID: v.string(),
-        name: v.string(),
-        url: v.string(),
-        size: v.number(),
-        isArchived: v.boolean(),
-        isFavorite: v.boolean(),
-        isSigned: v.boolean(),
-        type: v.string(),
-        parentFolder: v.optional(v.id("Folder")),
-      })
-    ),
   },
 
   handler: async (ctx, args) => {
@@ -80,7 +67,6 @@ export const creatrFolder = mutation({
       name: args.name,
       userID: args.userID,
       parentFolder: args.parentFolder,
-      file: args.file,
       isArchived: false,
       isFavorite: false,
     });
