@@ -97,8 +97,8 @@ export const getFolders = query({
 });
 
 
-//getsearch
-export const getSearch = query({
+//getsearch files
+export const getSearchFile = query({
   args: {
     userID: v.string(),
   },
@@ -106,6 +106,24 @@ export const getSearch = query({
   handler: async (ctx, args) => {
     const files = await ctx.db
       .query("File")
+      .withIndex("by_user", (query) => query.eq("userID", args.userID))
+      .filter((query) => query.eq(query.field("isArchived"), false))
+      .order("desc")
+      .collect();
+
+    return files;
+  },
+});
+
+//getsearch files
+export const getSearchFolder = query({
+  args: {
+    userID: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const files = await ctx.db
+      .query("Folder")
       .withIndex("by_user", (query) => query.eq("userID", args.userID))
       .filter((query) => query.eq(query.field("isArchived"), false))
       .order("desc")
