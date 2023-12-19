@@ -28,7 +28,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-file-icon": "^1.3.0",
-    "react-hot-toast": "^2.4.1",
+    "sonner": "^1.2.4",
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"

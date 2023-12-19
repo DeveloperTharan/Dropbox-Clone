@@ -54,7 +54,9 @@ export default function TableWrapper({
           </TableHeader>
           <TableBody>
             {fileList === undefined ? (
-              <p>Lodding...</p>
+              <TableRow>
+                <TableCell>Loading...</TableCell>
+              </TableRow>
             ) : (
               <>
                 {fileList?.length === 0 ? (

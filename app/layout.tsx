@@ -3,6 +3,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/provider/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+import ConvexClientProvider from "@/provider/ConvexClientProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Dropbox.com",
@@ -30,14 +33,19 @@ export default function RootLayout({
     >
       <html lang="en">
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          <ConvexClientProvider>
+            <EdgeStoreProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <Toaster position="top-right" richColors expand={true}/>
+                {children}
+              </ThemeProvider>
+            </EdgeStoreProvider>
+          </ConvexClientProvider>
         </body>
       </html>
     </ClerkProvider>

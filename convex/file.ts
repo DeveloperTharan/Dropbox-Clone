@@ -11,6 +11,7 @@ export const createFile = mutation({
     type: v.string(),
     url: v.string(),
     userID: v.string(),
+    parentFolder: v.optional(v.id("Folder")),
   },
 
   //handling user and file
@@ -24,6 +25,7 @@ export const createFile = mutation({
       isArchived: false,
       isFavorite: false,
       isSigned: false,
+      parentFolder: args.parentFolder,
     });
 
     return newfile;
@@ -34,17 +36,50 @@ export const createFile = mutation({
 export const getFiles = query({
   args: {
     userID: v.string(),
+    parentFolder: v.optional(v.id("Folder")),
   },
 
   handler: async (ctx, args) => {
-    //get files from File through userId
+    //get files from File through userId and parent folder
     const files = await ctx.db
       .query("File")
-      .withIndex("by_user", (query) => query.eq("userID", args.userID))
+      .withIndex("by_parent_folder", (query) =>
+        query.eq("userID", args.userID).eq("parentFolder", args.parentFolder)
+      )
       .filter((query) => query.eq(query.field("isArchived"), false))
       .order("asc")
       .collect();
 
     return files;
+  },
+});
+
+export const creatrFolder = mutation({
+  args: {
+    userID: v.string(),
+    name: v.string(),
+    parentFolder: v.optional(v.id("Folder")),
+    file: v.optional(
+      v.object({
+        userID: v.string(),
+        name: v.string(),
+        url: v.string(),
+        size: v.number(),
+        isArchived: v.boolean(),
+        isFavorite: v.boolean(),
+        isSigned: v.boolean(),
+        type: v.string(),
+        parentFolder: v.optional(v.id("Folder")),
+      })
+    ),
+  },
+
+  handler: async (ctx, args) => {
+    const newFolder = await ctx.db.insert("Folder", {
+      name: args.name,
+      userID: args.userID,
+      parentFolder: args.parentFolder,
+      file: args.file,
+    })
   },
 });

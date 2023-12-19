@@ -2,53 +2,37 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import {
-  Cylinder,
-  ImageDown,
-  PencilLine,
-  Plus,
-  Trash,
-  Waypoints,
-} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronRight, FolderOpenDot, Plus, } from "lucide-react";
+import FolderList from "./FolderList";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { menu } from "@/constants/menu-constant";
+import { useAuth } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 export default function SideBar() {
-  const pathname = usePathname();
   const [Open, setOpen] = useState<boolean>(false);
 
-  const menu = [
-    {
-      id: 1,
-      name: "All Files",
-      href: "/home",
-      Icon: <Cylinder className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 2,
-      name: "Photos",
-      href: "/photos",
-      Icon: <ImageDown className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 3,
-      name: "Shared",
-      href: "/shared",
-      Icon: <Waypoints className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 4,
-      name: "Signatured",
-      href: "/signatured",
-      Icon: <PencilLine className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 5,
-      name: "Deleted",
-      href: "/deleted",
-      Icon: <Trash className="h-[14px] w-[14px] font-light" />,
-    },
-  ];
+  const pathname = usePathname();
+  const { userId } = useAuth();
+
+  const createFolder = useMutation(api.file.creatrFolder);
+
+  const handleCreateFolder = () => {
+    const promise = createFolder({
+      name: "Doc",
+      userID: userId!,
+    });
+
+    toast.promise(promise, {
+      loading: "Creating folder...",
+      success: "Successfully Created!",
+      error: "Error! try again.",
+      duration: 2000
+    })
+  }
 
   return (
     <div
@@ -88,6 +72,35 @@ export default function SideBar() {
               );
             })}
           </div>
+        </section>
+        <section className="flex flex-col mt-3">
+          <div className="flex flex-col dark:border-gray-800">
+            <div className="flex flex-col gap-y-4">
+              <div
+                className="flex gap-x-3 justify-start items-center pl-5 py-[10px] w-full
+              hover:bg-neutral-200 dark:hover:bg-gray-800 group"
+              >
+                <div className="text-[12px] font-light">
+                  <ChevronRight 
+                    className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer"
+                    onClick={() => setOpen(!Open)} 
+                  />
+                </div>
+                <div className="text-[12px] font-light">
+                  <FolderOpenDot className="h-4 w-4" />
+                </div>
+                <div className="text-[13px]">Folders</div>
+                <div className="text-[12px] font-light ml-auto mr-2">
+                  <Plus
+                    className="h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer opacity-0 
+                    group-hover:opacity-100 transition delay-300 ease-in-out"
+                    onClick={handleCreateFolder}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          {Open === true && <FolderList/>}
         </section>
       </aside>
     </div>

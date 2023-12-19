@@ -5,6 +5,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
 import { useEdgeStore } from "@/lib/edgestore";
+import { toast } from "sonner";
 
 interface CustomFile extends File {
   url?: string;
@@ -30,13 +31,20 @@ export default function DragAndDrop() {
   const handleFileUpload = async (file: CustomFile) => {
     const response = await edgestore.publicFiles.upload({ file });
 
-    await createNewFile({
+    const promise = createNewFile({
       name: file.name,
       size: file.size,
       type: file.type,
       url: response.url,
       userID: userId!,
     });
+
+    toast.promise(promise, {
+      loading: "Uploding...",
+      success: "Successfully Uploded!",
+      error: "Error! try again.",
+      duration: 2000
+    })
   };
 
   const handleFileChange = async (uploadedFiles: CustomFile[]) => {
@@ -92,33 +100,6 @@ export default function DragAndDrop() {
 
     setDragActive(true);
   };
-
-  const removeFile = (index: number) => {
-    const newArr = [...files];
-    newArr.splice(index, 1);
-    setFiles([]);
-    setFiles(newArr);
-  };
-
-  const handleUplodeFiles = async () => {
-    for (const file of files) {
-      if (file && file.name) {
-        const response = await edgestore.publicFiles.upload({ file });
-
-        await createNewFile({
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          url: response.url,
-          userID: userId!,
-        });
-      }
-    }
-
-    setFiles([]);
-  };
-
-  console.log(files);
 
   return (
     <div
