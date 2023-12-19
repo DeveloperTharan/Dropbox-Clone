@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/table";
 import { FileIcon, defaultStyles } from "react-file-icon";
 import { FileColorExtension } from "@/constants/color-constant";
+import Menu from "./Menu";
 
 interface FileData {
   _id: Id<"File">;
@@ -63,7 +64,7 @@ export default function TableWrapper({
               <>
                 {fileList?.length === 0 ? (
                   <TableRow className="relative h-24 w-full flex text-center items-center justify-center">
-                      No results.
+                    No results.
                   </TableRow>
                 ) : (
                   <>
@@ -72,10 +73,10 @@ export default function TableWrapper({
                       const extension: string = type.split("/")[1];
                       const formatDate = (timestamp: number) => {
                         const date = new Date(timestamp);
-                        const formattedDate = date.toLocaleString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
+                        const formattedDate = date.toLocaleString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
                         });
                         return formattedDate;
                       };
@@ -96,7 +97,9 @@ export default function TableWrapper({
                             </div>
                           </TableCell>
                           <TableCell>{truncate(`${file?.name}`, 30)}</TableCell>
-                          <TableCell>{file ? formatDate(file._creationTime) : '-'}</TableCell>
+                          <TableCell>
+                            {file ? formatDate(file._creationTime) : "-"}
+                          </TableCell>
                           <TableCell className="text-center">
                             {prettyBytes(file?.size as number)}
                           </TableCell>
@@ -109,7 +112,9 @@ export default function TableWrapper({
                               Link
                             </Link>
                           </TableCell>
-                          <TableCell className="text-right">menu</TableCell>
+                          <TableCell className="flex justify-center items-center">
+                            <Menu fileId={file?._id} />
+                          </TableCell>
                         </TableRow>
                       );
                     })}
