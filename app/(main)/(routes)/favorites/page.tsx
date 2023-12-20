@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import FavoriteItems from "./components/FavoriteItems";
 
-function Favorites() {
+export default function Favorites() {
   return (
-    <div>Favorites</div>
-  )
+    <>
+      <FavoriteItems />
+    </>
+  );
 }
-
-export default Favorites

@@ -43,7 +43,7 @@ export default function HandleAchive({
 
   return (
     <div
-      className="flex flex-row gap-x-2 justify-start items-center"
+      className="flex flex-row gap-x-2 justify-start items-center w-full h-auto"
       onClick={handleAchive}
     >
       <Trash2 className="h-4 w-4" />

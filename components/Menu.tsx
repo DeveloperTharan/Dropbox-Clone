@@ -31,8 +31,8 @@ function Menu({ file }: { file: Doc<"File"> }) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <MoreHorizontal className="h-8 w-8 p-2 rounded-[5px] hover:bg-black" />
+      <DropdownMenuTrigger className="outline-none">
+        <MoreHorizontal className="h-8 w-8 p-2 rounded-[5px] hover:bg-gray-200 dark:hover:bg-black" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel className="truncate">

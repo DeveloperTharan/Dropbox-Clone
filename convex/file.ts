@@ -178,7 +178,7 @@ export const getAchive = query({
       .order("asc")
       .collect();
 
-      return file;
+    return file;
   },
 });
 
@@ -203,5 +203,23 @@ export const remove = mutation({
     const file = await ctx.db.delete(args.id);
 
     return file;
-  }
-})
+  },
+});
+
+//getfavorite files
+export const getFavorite = query({
+  args: {
+    userID: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const file = await ctx.db
+      .query("File")
+      .withIndex("by_user", (query) => query.eq("userID", args.userID))
+      .filter((query) => query.eq(query.field("isFavorite"), true))
+      .order("asc")
+      .collect();
+
+      return file;
+  },
+});

@@ -63,7 +63,7 @@ export default function HandleFavorite({
     <>
       {!isFavorite ? (
         <div
-          className="flex flex-row gap-x-2 justify-start items-center"
+          className="flex flex-row gap-x-2 justify-start items-center w-full h-auto"
           role="button"
           onClick={handleFavorite}
         >
@@ -72,7 +72,7 @@ export default function HandleFavorite({
         </div>
       ) : (
         <div
-          className="flex flex-row gap-x-2 justify-start items-center"
+          className="flex flex-row gap-x-2 justify-start items-center w-full h-auto"
           role="button"
           onClick={handleRemoveFavorite}
         >

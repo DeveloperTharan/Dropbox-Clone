@@ -1,33 +1,52 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
 import { useAuth } from "@clerk/nextjs";
+import { useMutation, useQuery } from "convex/react";
+import { FileIcon, defaultStyles } from "react-file-icon";
+import { FileColorExtension } from "@/constants/color-constant";
+import { StarOffIcon } from "lucide-react";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FileIcon, defaultStyles } from "react-file-icon";
-import { FileColorExtension } from "@/constants/color-constant";
-import Link from "next/link";
-import { MoreHorizontal } from "lucide-react";
-import TrashMenu from "./TrashMenu";
+import { Id } from "@/convex/_generated/dataModel";
+import { toast } from "sonner";
 
-export default function TrashItems() {
+export default function FavoriteItems() {
   const { userId } = useAuth();
 
-  const getTrash = useQuery(api.file.getAchive, { userID: userId! as string });
+  const getFavorite = useQuery(api.file.getFavorite, {
+    userID: userId! as string,
+  });
+  const update = useMutation(api.file.update);
 
   const truncate = (string: string, n: number) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
   };
 
+  const handleRemoveFavorite = (fileId: string) => {
+    const promise = update({
+      id: fileId as Id<"File">,
+      userID: userId! as string,
+      isFavorite: false,
+    });
+
+    toast.promise(promise, {
+      loading: "Removing from Favorite",
+      success: "Remove from Favorite successfully",
+      error: "Error! try again.",
+      duration: 2000,
+    });
+  };
+
   return (
     <div className="flex  flex-row flex-wrap justify-normal items-center gap-5">
-      {getTrash?.map((file) => {
+      {getFavorite?.map((file) => {
         const type = file?.type;
         const extension = type.split("/")[1];
 
@@ -37,12 +56,12 @@ export default function TrashItems() {
             key={file?._id}
           >
             <CardHeader className="flex flex-col justify-center items-center p-2">
-              <TrashMenu id={file?._id}>
-                <MoreHorizontal
-                  className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:bg-gray-200 
-                  dark:hover:bg-black p-1 rounded-[5px]"
-                />
-              </TrashMenu>
+              <StarOffIcon
+                className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:bg-gray-200 
+                dark:hover:bg-black p-1 rounded-[5px]relative top-0 ml-auto text-gray-600"
+                role="button"
+                onClick={() => handleRemoveFavorite(file?._id)}
+              />
               <Link
                 href={file?.url}
                 target="_blank"
