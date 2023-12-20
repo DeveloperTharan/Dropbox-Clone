@@ -4,54 +4,68 @@ import React from "react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useClerk } from "@clerk/nextjs";
 import { Forward, KeyRound, MoreHorizontal, PenSquare } from "lucide-react";
+import HandleRename from "./handlers/handle-rename";
+import HandleFavorite from "./handlers/handle-favorite";
+import HandleAchive from "./handlers/handle-achive";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import HandleRename from "./handle-rename";
-import HandleFavorite from "./handle-favorite";
-import HandleAchive from "./handle-achive";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
-function Menu({ file }: { file: Doc<"File"> }) {
+export default function Menu({ file }: { file: Doc<"File"> }) {
   const { user } = useClerk();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="outline-none">
+    <Popover>
+      <PopoverTrigger asChild>
         <MoreHorizontal className="h-8 w-8 p-2 rounded-[5px] hover:bg-gray-200 dark:hover:bg-black" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="truncate">
+      </PopoverTrigger>
+      <PopoverContent className="w-44 p-1" align="end">
+        <div className="truncate border-b p-2 text-xs">
           {user?.fullName}&apos; File
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <HandleRename>
-          <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+        </div>
+        <HandleRename initialData={file?.name} id={file?._id}>
+          <div
+            className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
+          dark:hover:bg-gray-800 w-full p-1"
+            role="button"
+          >
             <PenSquare className="h-4 w-4" />
             <span className="text-sm">Rename</span>
-          </DropdownMenuItem>
+          </div>
         </HandleRename>
-        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+        <div
+          className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
+          dark:hover:bg-gray-800 w-full p-1"
+          role="button"
+        >
           <HandleFavorite initialData={file?.isFavorite} id={file?._id} />
-        </DropdownMenuItem>
-        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+        </div>
+        <div
+          className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
+          dark:hover:bg-gray-800 w-full p-1"
+          role="button"
+        >
           <Forward className="h-4 w-4" />
           <span className="text-sm">Share</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+        </div>
+        <div
+          className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
+          dark:hover:bg-gray-800 w-full p-1"
+          role="button"
+        >
           <KeyRound className="h-4 w-4" />
           <span className="text-sm">Signature</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
+        </div>
+        <div
+          className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
+          dark:hover:bg-gray-800 w-full p-1"
+          role="button"
+        >
           <HandleAchive initialData={file?.isArchived} id={file?._id} />
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }
-
-export default Menu;
