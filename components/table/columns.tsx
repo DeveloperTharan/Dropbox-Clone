@@ -6,8 +6,9 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 import prettyBytes from "pretty-bytes";
 import Link from "next/link";
 import Menu from "../Menu";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 
 export type FileType = {
   id: string;
@@ -23,6 +24,30 @@ export type FileType = {
 };
 
 export const columns: ColumnDef<FileType>[] = [
+  {
+    id: "id",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+        className="translate-y-[2px]"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+        className="translate-y-[2px]"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
   {
     accessorKey: "type",
     header: "Type",
@@ -47,17 +72,17 @@ export const columns: ColumnDef<FileType>[] = [
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "")}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           FileName
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      const filename = row.getValue("filename")
-      return <div className="pl-4">{filename as string}</div>
-    }
+      const filename = row.getValue("filename");
+      return <div className="pl-4">{filename as string}</div>;
+    },
   },
   {
     accessorKey: "timestamp",
