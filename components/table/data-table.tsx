@@ -25,8 +25,11 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -60,14 +63,25 @@ export function DataTable<TData, TValue>({
       <div className="flex justify-end items-center mb-3">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
+            <Button
+              variant="outline"
+              size="sm"
+              className="ml-auto hidden h-8 lg:flex rounded-[8px]"
+            >
+              <MixerHorizontalIcon className="mr-2 h-4 w-4" />
+              View
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="w-[150px]">
+            <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             {table
               .getAllColumns()
-              .filter((column) => column.getCanHide())
+              .filter(
+                (column) =>
+                  typeof column.accessorFn !== "undefined" &&
+                  column.getCanHide()
+              )
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
