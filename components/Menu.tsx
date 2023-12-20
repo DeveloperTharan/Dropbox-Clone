@@ -13,7 +13,20 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export default function Menu({ file }: { file: Doc<"File"> }) {
+export type FileType = {
+  id: string;
+  timestamp: number;
+  userID: string;
+  filename: string;
+  downloadURL: string;
+  size: number;
+  isArchived: boolean;
+  isFavorite: boolean;
+  isSigned: boolean;
+  type: string;
+};
+
+export default function Menu({ file }: { file: FileType }) {
   const { user } = useClerk();
 
   return (
@@ -25,7 +38,7 @@ export default function Menu({ file }: { file: Doc<"File"> }) {
         <div className="truncate border-b p-2 text-xs">
           {user?.fullName}&apos; File
         </div>
-        <HandleRename initialData={file?.name} id={file?._id}>
+        <HandleRename initialData={file?.filename} id={file?.id}>
           <div
             className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
           dark:hover:bg-gray-800 w-full p-1"
@@ -40,7 +53,7 @@ export default function Menu({ file }: { file: Doc<"File"> }) {
           dark:hover:bg-gray-800 w-full p-1"
           role="button"
         >
-          <HandleFavorite initialData={file?.isFavorite} id={file?._id} />
+          <HandleFavorite initialData={file?.isFavorite} id={file?.id} />
         </div>
         <div
           className="flex flex-row gap-x-2 justify-start items-center my-1 hover:bg-gray-200 
@@ -63,7 +76,7 @@ export default function Menu({ file }: { file: Doc<"File"> }) {
           dark:hover:bg-gray-800 w-full p-1"
           role="button"
         >
-          <HandleAchive initialData={file?.isArchived} id={file?._id} />
+          <HandleAchive initialData={file?.isArchived} id={file?.id} />
         </div>
       </PopoverContent>
     </Popover>

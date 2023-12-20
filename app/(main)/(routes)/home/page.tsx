@@ -1,13 +1,13 @@
-import DragAndDrop from '@/components/DragAndDrop'
-import FilesList from '@/components/FilesList'
 import React from 'react'
+import DragAndDrop from '@/components/DragAndDrop'
+import TableWrapper from '@/components/table/table-wrapper'
 
 export default function Home() {
   return (
     <>
       <DragAndDrop/>
       <div className='mt-14'>
-        <FilesList/>
+      <TableWrapper/>
       </div>
     </>
   )

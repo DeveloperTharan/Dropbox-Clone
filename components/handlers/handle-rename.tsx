@@ -22,7 +22,7 @@ import { toast } from "sonner";
 interface HandleRenameProps {
   children: React.ReactNode;
   initialData: string;
-  id: Id<"File">;
+  id: string;
 }
 
 export default function HandleRename({
@@ -42,7 +42,7 @@ export default function HandleRename({
 
     setName(name);
     const promise = update({
-      id: id,
+      id: id as Id<"File">,
       userID: userId! as string,
       name: name
     }).finally(() => setName(""));

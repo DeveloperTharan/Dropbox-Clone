@@ -13,7 +13,7 @@ export default function HandleFavorite({
   id,
 }: {
   initialData: boolean;
-  id: Id<"File">;
+  id: string;
 }) {
   const [isFavorite, setIsFavorite] = useState<boolean | undefined>(
     initialData || false

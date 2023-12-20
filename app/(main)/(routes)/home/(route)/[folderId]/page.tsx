@@ -1,16 +1,14 @@
 import React from 'react'
 import DragAndDrop from '@/components/DragAndDrop'
-import FilesList from '@/components/FilesList'
+import TableWrapper from '@/components/table/table-wrapper'
 
-function FolderId() {
+export default function FolderId() {
   return (
     <>
-    <DragAndDrop/>
-    <div className='mt-14'>
-      <FilesList/>
-    </div>
-  </>
+      <DragAndDrop/>
+      <div className='mt-14'>
+      <TableWrapper/>
+      </div>
+    </>
   )
 }
-
-export default FolderId

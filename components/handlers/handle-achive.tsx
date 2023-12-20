@@ -13,7 +13,7 @@ export default function HandleAchive({
   id,
 }: {
   initialData: boolean;
-  id: Id<"File">;
+  id: string;
 }) {
   const [isAchived, setIsAchived] = useState<boolean | undefined>(
     initialData || false
