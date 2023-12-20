@@ -6,7 +6,8 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 import prettyBytes from "pretty-bytes";
 import Link from "next/link";
 import Menu from "../Menu";
-import { Id } from "@/convex/_generated/dataModel";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { Button } from "../ui/button";
 
 export type FileType = {
   id: string;
@@ -42,7 +43,21 @@ export const columns: ColumnDef<FileType>[] = [
   },
   {
     accessorKey: "filename",
-    header: "Name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "")}
+        >
+          FileName
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const filename = row.getValue("filename")
+      return <div className="pl-4">{filename as string}</div>
+    }
   },
   {
     accessorKey: "timestamp",
