@@ -132,3 +132,36 @@ export const getSearchFolder = query({
     return files;
   },
 });
+
+
+//update the file
+export const update = mutation({
+  args: {
+    id: v.id("File"),
+    userID: v.string(),
+    name: v.optional(v.string()),
+    isArchived: v.optional(v.boolean()),
+    isFavorite: v.optional(v.boolean()),
+    isSigned: v.optional(v.boolean()),
+  },
+
+  handler: async (ctx, args) => {
+    //get Id and rest of all are copy because Id is static we change rest of all things
+    const { id, ...rest } = args;
+
+    //fetching existing document
+    const existingFile = await ctx.db.get(args.id);
+
+    if (!existingFile) {
+      throw new Error("Not found");
+    }
+
+    if (existingFile.userID !== args.userID) {
+      throw new Error("Unauthorized");
+    }
+
+    const file = await ctx.db.patch(args.id, { ...rest });
+
+    return file;
+  }
+})

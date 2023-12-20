@@ -101,17 +101,17 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
                 onClick={() => onRedirect(folder?._id)}
               >
                 <div
-                  className={`flex gap-x-3 justify-start items-center pl-12 py-[10px] w-full
+                  className={`flex gap-x-3 justify-start items-center py-[10px] w-full
                 hover:bg-neutral-200 dark:hover:bg-gray-800 group ${
                   active ? "bg-neutral-200 dark:bg-gray-800" : ""
-                }`}
+                  }`}
                   style={{
                     paddingLeft: level ? `${level * 12 + 12}px` : "12px",
                   }}
                 >
                   <div className="text-[12px] font-light">
                     <ChevronRight
-                      className={`h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer 
+                      className={`h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer ml-2
                       ${expanded[folder?._id] ? "rotate-90" : "rotate-0"}`}
                       onClick={() => onExpand(folder?._id)}
                     />

@@ -1,8 +1,17 @@
 "use client";
 
 import React from "react";
-import { Id } from "@/convex/_generated/dataModel";
-import { MoreHorizontal } from "lucide-react";
+import { Doc, Id } from "@/convex/_generated/dataModel";
+import { useClerk } from "@clerk/nextjs";
+import {
+  Forward,
+  KeyRound,
+  MoreHorizontal,
+  PenSquare,
+  Star,
+  StarOff,
+  Trash2,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,11 +20,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useClerk } from "@clerk/nextjs";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import RenameModel from "./Rename-model";
+import HandleFavorite from "./handle-favorite";
 
-
-function Menu({ fileId }: { fileId: Id<"File"> }) {
-    const { user } = useClerk();
+function Menu({ file }: { file: Doc<"File"> }) {
+  const { user } = useClerk();
 
   return (
     <DropdownMenu>
@@ -23,12 +34,31 @@ function Menu({ fileId }: { fileId: Id<"File"> }) {
         <MoreHorizontal className="h-8 w-8 p-2 rounded-[5px] hover:bg-black" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="truncate">{user?.fullName}&apos; File</DropdownMenuLabel>
+        <DropdownMenuLabel className="truncate">
+          {user?.fullName}&apos; File
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
+        <RenameModel>
+          <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+            <PenSquare className="h-4 w-4" />
+            <span className="text-sm">Rename</span>
+          </DropdownMenuItem>
+        </RenameModel>
+        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+          <HandleFavorite initialData={file?.isFavorite} id={file?._id}/>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+          <Forward className="h-4 w-4" />
+          <span className="text-sm">Share</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+          <KeyRound className="h-4 w-4" />
+          <span className="text-sm">Signature</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
+          <Trash2 className="h-4 w-4" />
+          <span className="text-sm">Delete</span>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

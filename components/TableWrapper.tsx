@@ -113,7 +113,7 @@ export default function TableWrapper({
                             </Link>
                           </TableCell>
                           <TableCell className="flex justify-center items-center">
-                            <Menu fileId={file?._id} />
+                            <Menu file={file} />
                           </TableCell>
                         </TableRow>
                       );
