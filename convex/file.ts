@@ -92,10 +92,9 @@ export const getFolders = query({
       .order("asc")
       .collect();
 
-      return getFolder;
+    return getFolder;
   },
 });
-
 
 //getsearch files
 export const getSearchFile = query({
@@ -133,7 +132,6 @@ export const getSearchFolder = query({
   },
 });
 
-
 //update the file
 export const update = mutation({
   args: {
@@ -161,6 +159,48 @@ export const update = mutation({
     }
 
     const file = await ctx.db.patch(args.id, { ...rest });
+
+    return file;
+  },
+});
+
+//get achive files
+export const getAchive = query({
+  args: {
+    userID: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const file = await ctx.db
+      .query("File")
+      .withIndex("by_user", (query) => query.eq("userID", args.userID))
+      .filter((query) => query.eq(query.field("isArchived"), true))
+      .order("asc")
+      .collect();
+
+      return file;
+  },
+});
+
+//remove file
+export const remove = mutation({
+  args: {
+    id: v.id("File"),
+    userID: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const existingFile = await ctx.db.get(args.id);
+
+    if (!existingFile) {
+      throw new Error("Not found");
+    }
+
+    if (existingFile.userID !== args.userID) {
+      throw new Error("Unauthorized");
+    }
+
+    const file = await ctx.db.delete(args.id);
 
     return file;
   }

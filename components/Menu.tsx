@@ -24,6 +24,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import RenameModel from "./Rename-model";
 import HandleFavorite from "./handle-favorite";
+import HandleAchive from "./handle-achive";
 
 function Menu({ file }: { file: Doc<"File"> }) {
   const { user } = useClerk();
@@ -55,9 +56,8 @@ function Menu({ file }: { file: Doc<"File"> }) {
           <KeyRound className="h-4 w-4" />
           <span className="text-sm">Signature</span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="flex flex-row gap-x-2 justify-start items-center">
-          <Trash2 className="h-4 w-4" />
-          <span className="text-sm">Delete</span>
+        <DropdownMenuItem>
+          <HandleAchive initialData={file?.isArchived} id={file?._id} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

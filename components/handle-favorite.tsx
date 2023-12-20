@@ -6,6 +6,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useAuth } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 export default function HandleFavorite({
   initialData,
@@ -22,22 +23,40 @@ export default function HandleFavorite({
 
   const update = useMutation(api.file.update);
 
-  const handleFavorite = () => {
+  const handleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
     setIsFavorite(initialData);
     const promise = update({
       id: id as Id<"File">,
       userID: userId! as string,
       isFavorite: true,
     }).finally(() => setIsFavorite(true));
+
+    toast.promise(promise, {
+      loading: "Adding to Favorite",
+      success: "Added to Favorite successfully",
+      error: "Error! try again.",
+      duration: 2000,
+    })
   };
 
-  const handleRemoveFavorite = () => {
+  const handleRemoveFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
     setIsFavorite(initialData);
     const promise = update({
       id: id as Id<"File">,
       userID: userId! as string,
       isFavorite: false,
     }).finally(() => setIsFavorite(false));
+
+    toast.promise(promise, {
+      loading: "Removing from Favorite",
+      success: "Remove from Favorite successfully",
+      error: "Error! try again.",
+      duration: 2000,
+    })
   };
 
   return (
