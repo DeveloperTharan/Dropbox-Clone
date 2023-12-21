@@ -24,7 +24,6 @@ export const createFile = mutation({
       url: args.url,
       isArchived: false,
       isFavorite: false,
-      isSigned: false,
       parentFolder: args.parentFolder,
     });
 
@@ -68,7 +67,6 @@ export const creatrFolder = mutation({
       userID: args.userID,
       parentFolder: args.parentFolder,
       isArchived: false,
-      isFavorite: false,
     });
 
     return newFolder;

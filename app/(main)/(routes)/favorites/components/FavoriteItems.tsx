@@ -50,7 +50,7 @@ export default function FavoriteItems() {
         <div className="h-full flex flex-col items-center justify-center">
           <div
             className="animate-spin inline-block w-6 h-6 border-[3px] border-current 
-          border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mt-[20%]"
+            border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mt-[20%]"
             role="status"
             aria-label="loading"
           >
@@ -60,7 +60,7 @@ export default function FavoriteItems() {
       ) : (
         <>
           {getFavorite.length === 0 ? (
-            <p>No Favorite Items</p>
+            <p className="relative h-full flex justify-center items-center mt-[20%]">No Favorite Items</p>
           ) : (
             <div className="flex  flex-row flex-wrap justify-normal items-center gap-5">
               {getFavorite?.map((file) => {

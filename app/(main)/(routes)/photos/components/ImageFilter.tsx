@@ -41,7 +41,7 @@ export default function ImageFilter() {
       ) : (
         <>
           {getFiles.length === 0 ? (
-            <p className="relative h-full flex justify-center items-center">
+            <p className="relative h-full flex justify-center items-center mt-[20%]">
               No Photo files found!
             </p>
           ) : (

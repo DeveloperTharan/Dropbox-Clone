@@ -8,7 +8,6 @@ export const File = {
   size: v.number(),
   isArchived: v.boolean(),
   isFavorite: v.boolean(),
-  isSigned: v.boolean(),
   type: v.string(),
   parentFolder: v.optional(v.id("Folder")),
 };
@@ -18,7 +17,6 @@ export const Folder = {
   name: v.string(),
   parentFolder: v.optional(v.id("Folder")),
   isArchived: v.boolean(),
-  isFavorite: v.boolean(),
 };
 
 export default defineSchema({
