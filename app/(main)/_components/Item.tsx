@@ -1,19 +1,20 @@
 "use client";
 
 import React from "react";
-import { toast } from "sonner";
-import { useMutation } from "convex/react";
-import { useRouter } from "next/navigation";
-import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { ChevronRight, MoreHorizontal, Plus } from "lucide-react";
+import {
+  ChevronRight,
+  Folder,
+  FolderOpen,
+  MoreHorizontal,
+  Plus,
+} from "lucide-react";
 import CreateFolder from "@/components/createfolder-model";
 import FolderMenu from "@/components/folder-menu";
 
 interface itemProp {
   onClick?: () => void;
   label: string;
-  icon: any;
   id?: Id<"Folder">;
   active?: boolean;
   expanded?: boolean;
@@ -24,7 +25,6 @@ interface itemProp {
 export default function Item({
   onClick,
   label,
-  icon: Icon,
   id,
   active,
   expanded,
@@ -58,7 +58,11 @@ export default function Item({
           />
         </div>
       )}
-      <Icon className="h-[14px] w-[14px] font-light" />
+      {!expanded ? (
+        <Folder className="h-4 w-4" />
+      ) : (
+        <FolderOpen className="h-4 w-4" />
+      )}
       <span className="truncate font-medium text-[12px]">{label}</span>
 
       {!!id && (

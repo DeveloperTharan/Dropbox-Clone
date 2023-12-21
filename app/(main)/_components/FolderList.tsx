@@ -5,7 +5,6 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
-import { ChevronRight, Folder, FolderOpen, Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Item from "./Item";
@@ -97,7 +96,6 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
               id={folder._id}
               onClick={() => onRedirect(folder._id)}
               label={folder.name}
-              icon={Folder}
               active={params.folderId === folder._id}
               level={level}
               onExpand={() => onExpand(folder._id)}
