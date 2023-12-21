@@ -25,7 +25,7 @@ export default function NavBar() {
         <SearchModel>
           <div
             className="w-full flex justify-start items-center border-[1px] border-gray-200 
-          p-3 gap-x-2 hover:border-gray-900 dark:border-gray-900 dark:hover:border-neutral-400
+          p-3 gap-x-2 hover:border-gray-400 dark:border-gray-900 dark:hover:border-neutral-400
           cursor-text"
           >
             <span>

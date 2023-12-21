@@ -44,7 +44,7 @@ export const columns: ColumnDef<FileType>[] = [
         aria-label="Select row"
         className="translate-y-[2px]"
       />
-    ),
+    ), 
     enableSorting: false,
     enableHiding: false,
   },

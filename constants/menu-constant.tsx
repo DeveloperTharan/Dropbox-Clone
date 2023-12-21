@@ -21,18 +21,6 @@ export const menu = [
     },
     {
       id: 4,
-      name: "Shared",
-      href: "/shared",
-      Icon: <Waypoints className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 5,
-      name: "Signatured",
-      href: "/signatured",
-      Icon: <PencilLine className="h-[14px] w-[14px] font-light" />,
-    },
-    {
-      id: 6,
       name: "Deleted",
       href: "/deleted",
       Icon: <Trash className="h-[14px] w-[14px] font-light" />,

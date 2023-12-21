@@ -111,7 +111,7 @@ export default function DragAndDrop() {
           text-center cursor-pointer group hover:border-neutral-400 ${
             dragActive
               ? "bg-blue-200/80 dark:bg-blue-950"
-              : "bg-gray-300/80 dark:bg-gray-900/80"
+              : "bg-gray-200/80 dark:bg-gray-900/80"
           }`}
       onClick={openFileExplorer}
     >
