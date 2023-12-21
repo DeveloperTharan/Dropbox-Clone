@@ -1,10 +1,10 @@
 import React from "react";
-import TrashItems from "./components/TrashItems";
+import TrashFileItems from "./components/TrashFileItems";
 
 export default function Deleted() {
   return (
     <>
-      <TrashItems />
+      <TrashFileItems />
     </>
   );
 }

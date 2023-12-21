@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
 import { useMutation } from "convex/react";
@@ -20,8 +21,10 @@ import { Label } from "./ui/label";
 
 export default function CreateFolder({
   children,
+  id,
 }: {
   children: React.ReactNode;
+  id?: Id<"Folder">;
 }) {
   const [name, setName] = useState<string>("Doc");
   const { userId } = useAuth();
@@ -33,6 +36,7 @@ export default function CreateFolder({
     const promise = createFolder({
       name: name,
       userID: userId! as string,
+      parentFolder: id,
     });
 
     toast.promise(promise, {

@@ -223,3 +223,83 @@ export const getFavorite = query({
       return file;
   },
 });
+
+//rename folder
+export const updateFolder = mutation({
+  args: {
+    id: v.id("Folder"),
+    userID: v.string(),
+    name: v.string(),
+  },
+
+  handler: async (ctx, args) => {
+    const { id, ...rest } = args;
+
+    const existingFile = await ctx.db.get(args.id);
+
+    if (!existingFile) {
+      throw new Error("Not found");
+    }
+
+    if (existingFile.userID !== args.userID) {
+      throw new Error("Unauthorized");
+    }
+
+    const file = await ctx.db.patch(args.id, {...rest});
+
+    return file;
+  }
+})
+
+//deleting folder
+export const archiveFolder = mutation({
+  args: {
+    id: v.id("Folder"),
+    userID: v.string()
+  },
+
+  handler: async (ctx, args) => {
+
+    //fetching existing document
+    const existingFolder = await ctx.db.get(args.id);
+
+    if (!existingFolder) {
+      throw new Error("Not found");
+    }
+
+    if (existingFolder.userID !== args.userID) {
+      throw new Error("unAuthenticated");
+    }
+
+    //delete that document
+    const folder = await ctx.db.patch(args.id, {
+      isArchived: true,
+    });
+
+    //deleting all the child of that document
+    const recresiveArchie = async (folderId: Id<"Folder">) => {
+      const children = await ctx.db
+        .query("Folder")
+        .withIndex("by_parent_folder", (query) =>
+          query.eq("userID", args.userID).eq("parentFolder", folderId)
+        )
+        .collect();
+
+      //for-loop for continue this for all the children
+      for (const child of children) {
+        await ctx.db.patch(child._id, {
+          isArchived: true,
+        });
+
+        //it will create a loop and continue this.
+        //(check every single child and confirm arhived or not it will go at the end of the document childrens)
+        await recresiveArchie(child._id);
+      }
+    };
+
+    //it will get all the documents recresively
+    recresiveArchie(args.id);
+
+    return folder;
+  },
+});

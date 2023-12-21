@@ -8,6 +8,7 @@ import { useQuery } from "convex/react";
 import { ChevronRight, Folder, FolderOpen, Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Item from "./Item";
 
 interface FolderProps {
   parentFolderId?: Id<"Folder">;
@@ -90,47 +91,26 @@ export default function FolderList({ parentFolderId, level = 0 }: FolderProps) {
               )}
             </>
           )}
-          {getFolders?.map((folder) => {
-            const active = params.folderId === folder._id;
-
-            return (
-              <div
-                className="flex flex-col"
-                key={folder?._id}
-                role="button"
-                onClick={() => onRedirect(folder?._id)}
-              >
-                <div
-                  className={`flex gap-x-3 justify-start items-center py-[10px] w-full
-                hover:bg-neutral-200 dark:hover:bg-gray-800 group ${
-                  active ? "bg-neutral-200 dark:bg-gray-800" : ""
-                  }`}
-                  style={{
-                    paddingLeft: level ? `${level * 12 + 12}px` : "12px",
-                  }}
-                >
-                  <div className="text-[12px] font-light">
-                    <ChevronRight
-                      className={`h-4 w-4 p-[2px] hover:bg-background rounded-[5px] cursor-pointer ml-2
-                      ${expanded[folder?._id] ? "rotate-90" : "rotate-0"}`}
-                      onClick={() => onExpand(folder?._id)}
-                    />
-                  </div>
-                  <div className="text-[12px] font-light">
-                    {!expanded[folder?._id] ? (
-                      <Folder className="h-4 w-4" />
-                    ) : (
-                      <FolderOpen className="h-4 w-4" />
-                    )}
-                  </div>
-                  <div className="text-[13px]">{folder?.name}</div>
-                </div>
-                {expanded[folder._id] && (
-                  <FolderList parentFolderId={folder._id} level={level + 1} />
-                )}
-              </div>
-            );
-          })}
+          {getFolders?.map((folder) => (
+            <div key={folder._id}>
+            <Item
+              id={folder._id}
+              onClick={() => onRedirect(folder._id)}
+              label={folder.name}
+              icon={Folder}
+              active={params.folderId === folder._id}
+              level={level}
+              onExpand={() => onExpand(folder._id)}
+              expanded={expanded[folder._id]}
+            />
+            {expanded[folder._id] && (
+              <FolderList
+                parentFolderId={folder._id}
+                level={level + 1}
+              />
+            )}
+          </div>
+          ))}
         </>
       )}
     </>

@@ -14,9 +14,9 @@ import { FileIcon, defaultStyles } from "react-file-icon";
 import { FileColorExtension } from "@/constants/color-constant";
 import Link from "next/link";
 import { MoreHorizontal } from "lucide-react";
-import TrashMenu from "./TrashMenu";
+import TrashFileMenu from "./TrashFileMenu";
 
-export default function TrashItems() {
+export default function TrashFileItems() {
   const { userId } = useAuth();
 
   const getTrash = useQuery(api.file.getAchive, { userID: userId! as string });
@@ -37,12 +37,12 @@ export default function TrashItems() {
             key={file?._id}
           >
             <CardHeader className="flex flex-col justify-center items-center p-2">
-              <TrashMenu id={file?._id}>
+              <TrashFileMenu id={file?._id}>
                 <MoreHorizontal
                   className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:bg-gray-200 
                   dark:hover:bg-black p-1 rounded-[5px]"
                 />
-              </TrashMenu>
+              </TrashFileMenu>
               <Link
                 href={file?.url}
                 target="_blank"

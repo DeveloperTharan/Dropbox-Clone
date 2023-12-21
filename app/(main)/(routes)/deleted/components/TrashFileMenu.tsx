@@ -16,15 +16,15 @@ import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { IterationCcw, Trash2 } from "lucide-react";
 
-interface TrashMenuProps {
+interface TrashFileMenuProps {
   children: React.ReactNode;
   id: Id<"File">;
 }
 
-export default function TrashMenu({
+export default function TrashFileMenu({
   children,
   id,
-}: TrashMenuProps) {
+}: TrashFileMenuProps) {
   const { user } = useClerk();
   const { userId } = useAuth();
 

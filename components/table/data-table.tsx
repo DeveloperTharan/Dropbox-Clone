@@ -104,10 +104,10 @@ export function DataTable<TData, TValue>({
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id + Math.floor(Math.random() * 1000) + 1}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id + Math.floor(Math.random() * 1000) + 1}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -124,11 +124,11 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
+                  key={row.id + Math.floor(Math.random() * 1000) + 1}
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id + Math.floor(Math.random() * 1000) + 1}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
