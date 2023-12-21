@@ -27,16 +27,14 @@ export default function HandleAchiveFolder({
     const promise = achive({
       id: id as Id<"Folder">,
       userID: userId! as string,
-    });
+    }).finally(() => router.push("/home"));
 
     toast.promise(promise, {
-      loading: "Deleting file",
+      loading: "Deleting folder",
       success: "Deleted successfully",
       error: "Error! try again.",
       duration: 2000,
     });
-
-    router.push("/home");
   };
 
   return <div onClick={handleAchive}>{children}</div>;
