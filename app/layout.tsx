@@ -3,8 +3,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/provider/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { EdgeStoreProvider } from "@/lib/edgestore";
-import ConvexClientProvider from "@/provider/ConvexClientProvider";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
@@ -33,19 +31,15 @@ export default function RootLayout({
     >
       <html lang="en">
         <body>
-          <ConvexClientProvider>
-            <EdgeStoreProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <Toaster position="top-right" richColors expand={true}/>
-                {children}
-              </ThemeProvider>
-            </EdgeStoreProvider>
-          </ConvexClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster position="top-right" richColors expand={true} />
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
