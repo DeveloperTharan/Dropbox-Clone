@@ -45,44 +45,56 @@ export default function FavoriteItems() {
   };
 
   return (
-    <div className="flex  flex-row flex-wrap justify-normal items-center gap-5">
-      {getFavorite?.map((file) => {
-        const type = file?.type;
-        const extension = type.split("/")[1];
+    <>
+      {getFavorite === undefined ? (
+        <p>loadding...</p>
+      ) : (
+        <>
+          {getFavorite.length === 0 ? (
+            <p>No Favorite Items</p>
+          ) : (
+            <div className="flex  flex-row flex-wrap justify-normal items-center gap-5">
+              {getFavorite?.map((file) => {
+                const type = file?.type;
+                const extension = type.split("/")[1];
 
-        return (
-          <Card
-            className="w-full h-full max-w-fit max-h-fit border-0 group"
-            key={file?._id}
-          >
-            <CardHeader className="flex flex-col justify-center items-center p-2">
-              <StarOffIcon
-                className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:bg-gray-200 
+                return (
+                  <Card
+                    className="w-full h-full max-w-fit max-h-fit border-0 group"
+                    key={file?._id}
+                  >
+                    <CardHeader className="flex flex-col justify-center items-center p-2">
+                      <StarOffIcon
+                        className="h-6 w-6 opacity-0 group-hover:opacity-100 hover:bg-gray-200 
                 dark:hover:bg-black p-1 rounded-[5px]relative top-0 ml-auto text-gray-600"
-                role="button"
-                onClick={() => handleRemoveFavorite(file?._id)}
-              />
-              <Link
-                href={file?.url}
-                target="_blank"
-                className="flex flex-col gap-y-4 justify-center items-center p-2"
-              >
-                <CardTitle className="h-12 w-12">
-                  <FileIcon
-                    extension={extension}
-                    labelColor={FileColorExtension[extension]}
-                    //@ts-ignore
-                    {...defaultStyles[extension]}
-                  />
-                </CardTitle>
-                <CardDescription>
-                  {truncate(`${file?.name}`, 12)}
-                </CardDescription>
-              </Link>
-            </CardHeader>
-          </Card>
-        );
-      })}
-    </div>
+                        role="button"
+                        onClick={() => handleRemoveFavorite(file?._id)}
+                      />
+                      <Link
+                        href={file?.url}
+                        target="_blank"
+                        className="flex flex-col gap-y-4 justify-center items-center p-2"
+                      >
+                        <CardTitle className="h-12 w-12">
+                          <FileIcon
+                            extension={extension}
+                            labelColor={FileColorExtension[extension]}
+                            //@ts-ignore
+                            {...defaultStyles[extension]}
+                          />
+                        </CardTitle>
+                        <CardDescription>
+                          {truncate(`${file?.name}`, 12)}
+                        </CardDescription>
+                      </Link>
+                    </CardHeader>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 }
