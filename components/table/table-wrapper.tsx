@@ -18,7 +18,6 @@ export type FileType = {
     size: number;
     isArchived: boolean;
     isFavorite: boolean;
-    isSigned: boolean;
     type: string;
   }
   
@@ -42,7 +41,6 @@ function TableWrapper() {
           size: file.size,
           isArchived: file.isArchived,
           isFavorite: file.isFavorite,
-          isSigned: file.isSigned,
           type: file.type,
         }))
       : undefined;

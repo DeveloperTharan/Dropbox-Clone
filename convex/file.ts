@@ -138,7 +138,6 @@ export const update = mutation({
     name: v.optional(v.string()),
     isArchived: v.optional(v.boolean()),
     isFavorite: v.optional(v.boolean()),
-    isSigned: v.optional(v.boolean()),
   },
 
   handler: async (ctx, args) => {

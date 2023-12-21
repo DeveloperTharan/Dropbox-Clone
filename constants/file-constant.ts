@@ -7,6 +7,5 @@ export type FileType = {
   size: number;
   isArchived: boolean;
   isFavorite: boolean;
-  isSigned: boolean;
   type: string;
 }
