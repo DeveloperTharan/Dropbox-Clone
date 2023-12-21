@@ -13,7 +13,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
       <SideBar />
       <main className="flex-1 relative h-full w-full md:pl-[17rem]">
         <NavBar />
-        <div className="mx-5 md:ml-1 md:mr-6">{children}</div>
+        <div className="mx-5 md:ml-1 md:mr-6 h-full">{children}</div>
       </main>
     </div>
   );

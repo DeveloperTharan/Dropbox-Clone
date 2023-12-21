@@ -47,7 +47,16 @@ export default function FavoriteItems() {
   return (
     <>
       {getFavorite === undefined ? (
-        <p>loadding...</p>
+        <div className="h-full flex flex-col items-center justify-center">
+          <div
+            className="animate-spin inline-block w-6 h-6 border-[3px] border-current 
+          border-t-transparent text-blue-600 rounded-full dark:text-blue-500 mt-[20%]"
+            role="status"
+            aria-label="loading"
+          >
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
       ) : (
         <>
           {getFavorite.length === 0 ? (

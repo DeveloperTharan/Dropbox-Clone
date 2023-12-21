@@ -31,11 +31,22 @@ export default function TrashFolderItems() {
     <>
       <h2 className="text-2xl font-semibold ms-1 mb-4">Deleted Folders</h2>
       {getTrash === undefined ? (
-        <p className="flex justify-center items-center my-20">Loading...</p>
+        <div className="flex justify-center items-center my-20">
+          <div
+            className="animate-spin inline-block w-6 h-6 border-[3px] border-current 
+            border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+            role="status"
+            aria-label="loading"
+          >
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
       ) : (
         <>
           {getTrash.length === 0 ? (
-            <p className="flex justify-center items-center my-20">No Files are in Trash</p>
+            <p className="flex justify-center items-center my-20">
+              No Files are in Trash
+            </p>
           ) : (
             <div className="flex  flex-row flex-wrap justify-normal items-center gap-5">
               {getTrash?.map((folder) => (
