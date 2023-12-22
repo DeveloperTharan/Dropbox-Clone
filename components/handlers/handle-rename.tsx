@@ -36,6 +36,10 @@ export default function HandleRename({
 
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const handleRename = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -43,7 +47,7 @@ export default function HandleRename({
     setName(name);
     const promise = update({
       id: id as Id<"File">,
-      userID: userId! as string,
+      userID: userId as string,
       name: name
     }).finally(() => setName(""));
 

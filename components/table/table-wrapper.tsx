@@ -25,9 +25,13 @@ export type FileType = {
 function TableWrapper() {
     const params = useParams();
     const { userId } = useAuth();
+
+    if(!userId){
+      throw console.error("Not Authenticated")
+    }
   
     const Files = useQuery(api.file.getFiles, {
-      userID: userId! as string,
+      userID: userId as string,
       parentFolder: params.folderId as Id<"Folder">,
     });
   

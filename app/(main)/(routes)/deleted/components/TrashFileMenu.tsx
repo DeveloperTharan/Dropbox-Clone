@@ -28,6 +28,10 @@ export default function TrashFileMenu({
   const { user } = useClerk();
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const update = useMutation(api.file.update);
   const remove = useMutation(api.file.remove);
 
@@ -36,7 +40,7 @@ export default function TrashFileMenu({
 
     const promise = update({
       id: id,
-      userID: userId! as string,
+      userID: userId as string,
       isArchived: false,
     });
 
@@ -53,7 +57,7 @@ export default function TrashFileMenu({
 
     const promise = remove({
       id: id,
-      userID: userId! as string,
+      userID: userId as string,
     });
 
     toast.promise(promise, {

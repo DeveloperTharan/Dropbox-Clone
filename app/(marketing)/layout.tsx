@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Footer from "./_components/Footer"
-import NavBar from "./_components/NavBar"
+import Footer from "./_components/Footer";
+import NavBar from "./_components/NavBar";
 
 export const metadata: Metadata = {
   title: "Dropbox.com",
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <div className="overflow-x-hidden h-full w-full">
-    <NavBar/>
-    <main className="h-full w-full">{children}</main>
-    <Footer/>
+      <NavBar />
+      <main className="h-full w-full">{children}</main>
+      <Footer />
     </div>
-  )
+  );
 }

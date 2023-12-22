@@ -34,6 +34,10 @@ export default function HandleRenameFolder({
 
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const handleRename = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -41,7 +45,7 @@ export default function HandleRenameFolder({
     setName(name);
     const promise = rename({
       id: id as Id<"Folder">,
-      userID: userId! as string,
+      userID: userId as string,
       name: name
     }).finally(() => setName(""));
 

@@ -19,8 +19,12 @@ export default function TrashFolderItems() {
   const { userId } = useAuth();
   const router = useRouter();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const getTrash = useQuery(api.file.getAchiveFolders, {
-    userID: userId! as string,
+    userID: userId as string,
   });
 
   const truncate = (string: string, n: number) => {

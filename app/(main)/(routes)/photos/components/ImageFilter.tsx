@@ -18,7 +18,11 @@ import Link from "next/link";
 export default function ImageFilter() {
   const { userId } = useAuth();
 
-  const getFiles = useQuery(api.file.getFiles, { userID: userId! as string });
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
+  const getFiles = useQuery(api.file.getFiles, { userID: userId as string });
 
   const truncate = (string: string, n: number) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;

@@ -21,6 +21,10 @@ export default function HandleFavorite({
 
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const update = useMutation(api.file.update);
 
   const handleFavorite = (e: React.MouseEvent) => {
@@ -29,7 +33,7 @@ export default function HandleFavorite({
     setIsFavorite(initialData);
     const promise = update({
       id: id as Id<"File">,
-      userID: userId! as string,
+      userID: userId as string,
       isFavorite: true,
     }).finally(() => setIsFavorite(true));
 

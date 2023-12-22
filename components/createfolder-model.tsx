@@ -29,13 +29,17 @@ export default function CreateFolder({
   const [name, setName] = useState<string>("Doc");
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const createFolder = useMutation(api.file.creatrFolder);
 
   const handleCreateFolder = () => {
     setName(name);
     const promise = createFolder({
       name: name,
-      userID: userId! as string,
+      userID: userId as string,
       parentFolder: id,
     });
 

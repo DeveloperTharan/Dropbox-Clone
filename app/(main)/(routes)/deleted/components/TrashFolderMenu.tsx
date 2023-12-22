@@ -27,6 +27,10 @@ export default function TrashFileMenu({ children, id }: TrashFileMenuProps) {
   const { userId } = useAuth();
   const router = useRouter();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const restore = useMutation(api.file.restoreFolder);
   const remove = useMutation(api.file.removFolder);
 
@@ -35,7 +39,7 @@ export default function TrashFileMenu({ children, id }: TrashFileMenuProps) {
 
     const promise = restore({
       id: id,
-      userID: userId! as string,
+      userID: userId as string,
     });
 
     toast.promise(promise, {
@@ -51,7 +55,7 @@ export default function TrashFileMenu({ children, id }: TrashFileMenuProps) {
 
     const promise = remove({
       id: id,
-      userID: userId! as string,
+      userID: userId as string,
     }).finally(() => router.push("/deleted"));
 
     toast.promise(promise, {

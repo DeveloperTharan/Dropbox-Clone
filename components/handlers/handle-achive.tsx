@@ -21,6 +21,10 @@ export default function HandleAchive({
 
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const update = useMutation(api.file.update);
 
   const handleAchive = (e: React.MouseEvent) => {
@@ -29,7 +33,7 @@ export default function HandleAchive({
     setIsAchived(initialData);
     const promise = update({
       id: id as Id<"File">,
-      userID: userId! as string,
+      userID: userId as string,
       isArchived: true,
     }).finally(() => setIsAchived(true));
 

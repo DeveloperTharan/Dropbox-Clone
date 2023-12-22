@@ -19,7 +19,11 @@ import TrashFileMenu from "./TrashFileMenu";
 export default function TrashFileItems() {
   const { userId } = useAuth();
 
-  const getTrash = useQuery(api.file.getAchive, { userID: userId! as string });
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
+  const getTrash = useQuery(api.file.getAchive, { userID: userId as string });
 
   const truncate = (string: string, n: number) => {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;

@@ -20,10 +20,15 @@ export default function RenderValue({
   activeButton,
 }: RenderValueProps) {
   const { userId } = useAuth();
+
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const router = useRouter();
   const files = useQuery(api.file.getSearchFile, { userID: userId! as string });
   const folders = useQuery(api.file.getSearchFolder, {
-    userID: userId! as string,
+    userID: userId as string,
   });
 
   const truncate = (string: string, n: number) => {

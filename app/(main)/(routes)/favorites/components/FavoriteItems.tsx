@@ -20,8 +20,12 @@ import { toast } from "sonner";
 export default function FavoriteItems() {
   const { userId } = useAuth();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const getFavorite = useQuery(api.file.getFavorite, {
-    userID: userId! as string,
+    userID: userId as string,
   });
   const update = useMutation(api.file.update);
 
@@ -32,7 +36,7 @@ export default function FavoriteItems() {
   const handleRemoveFavorite = (fileId: string) => {
     const promise = update({
       id: fileId as Id<"File">,
-      userID: userId! as string,
+      userID: userId as string,
       isFavorite: false,
     });
 

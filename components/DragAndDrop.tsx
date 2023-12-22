@@ -20,6 +20,10 @@ export default function DragAndDrop() {
   const { userId } = useAuth();
   const params = useParams();
 
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
+
   const inputRef = useRef<any>(null);
 
   const { edgestore } = useEdgeStore();
@@ -39,7 +43,7 @@ export default function DragAndDrop() {
       size: file.size,
       type: file.type,
       url: response.url,
-      userID: userId! as string,
+      userID: userId as string,
       parentFolder: params.folderId as Id<"Folder">
     });
 

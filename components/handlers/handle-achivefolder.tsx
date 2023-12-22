@@ -16,8 +16,11 @@ export default function HandleAchiveFolder({
   id: string;
 }) {
   const router = useRouter();
-
   const { userId } = useAuth();
+
+  if(!userId){
+    throw console.error("Not Authenticated")
+  }
 
   const achive = useMutation(api.file.archiveFolder);
 
@@ -26,7 +29,7 @@ export default function HandleAchiveFolder({
 
     const promise = achive({
       id: id as Id<"Folder">,
-      userID: userId! as string,
+      userID: userId as string,
     }).finally(() => router.push("/home"));
 
     toast.promise(promise, {

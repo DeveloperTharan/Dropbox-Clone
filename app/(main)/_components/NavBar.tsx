@@ -12,8 +12,11 @@ import {
 } from "@/components/ui/tooltip";
 import MediaSideBar from "./MediaSideBar";
 import { SearchModel } from "@/components/search-model";
+import { useAuth } from "@clerk/nextjs";
 
 export default function NavBar() {
+  const { signOut } = useAuth();
+
   return (
     <div className="w-full flex items-center py-5 z-50 bg-background sticky top-0">
       <div className="md:hidden px-3" role="button">
@@ -72,7 +75,7 @@ export default function NavBar() {
           </span>
           <span>
             <UserButton
-              afterSignOutUrl="/sign-in"
+            afterSignOutUrl="/"
               appearance={{
                 elements: {
                   avatarBox: "h-6 w-6",
