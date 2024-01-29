@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="overflow-x-hidden h-full w-full">
+    <div className="overflow-x-hidden h-auto min-h-full w-full">
       <NavBar />
       <main className="h-full w-full">{children}</main>
       <Footer />
