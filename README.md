@@ -9,7 +9,7 @@ Dropbox clone websites, ensuring full functionality and highquality projects fro
 * Leveraged Next.js 14 and Tailwind CSS to achieve  
   efficient rendering and a visually appealing UI.
 * Utilized Convex database for seamless data storage 
-  andmanagement.
+  andmanagement. 
 * Incorporated Edgestore.dev for efficient file 
   uploads, enhancing user experience with reliable
   data handling
