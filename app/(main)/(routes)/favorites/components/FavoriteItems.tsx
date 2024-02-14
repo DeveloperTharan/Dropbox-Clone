@@ -16,12 +16,13 @@ import {
 } from "@/components/ui/card";
 import { Id } from "@/convex/_generated/dataModel";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export default function FavoriteItems() {
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const getFavorite = useQuery(api.file.getFavorite, {

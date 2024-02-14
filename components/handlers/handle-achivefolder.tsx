@@ -7,6 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function HandleAchiveFolder({
   children,
@@ -19,7 +20,7 @@ export default function HandleAchiveFolder({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const achive = useMutation(api.file.archiveFolder);

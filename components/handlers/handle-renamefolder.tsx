@@ -18,6 +18,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 interface HandleRenameProps {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ export default function HandleRenameFolder({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const handleRename = (e: React.MouseEvent) => {

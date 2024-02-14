@@ -7,6 +7,7 @@ import { useAuth } from "@clerk/nextjs";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export default function HandleAchive({
   initialData,
@@ -22,7 +23,7 @@ export default function HandleAchive({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const update = useMutation(api.file.update);

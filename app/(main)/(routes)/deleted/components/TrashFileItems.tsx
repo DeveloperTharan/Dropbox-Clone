@@ -15,12 +15,13 @@ import { FileColorExtension } from "@/constants/color-constant";
 import Link from "next/link";
 import { MoreHorizontal } from "lucide-react";
 import TrashFileMenu from "./TrashFileMenu";
+import { redirect } from "next/navigation";
 
 export default function TrashFileItems() {
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const getTrash = useQuery(api.file.getAchive, { userID: userId as string });

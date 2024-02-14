@@ -9,6 +9,7 @@ import { api } from "@/convex/_generated/api";
 import { useAuth } from "@clerk/nextjs";
 import { FileIcon, defaultStyles } from "react-file-icon";
 import { Folder } from "lucide-react";
+import { redirect } from "next/navigation";
 
 interface RenderValueProps {
   searchDocument: string;
@@ -22,7 +23,7 @@ export default function RenderValue({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const router = useRouter();

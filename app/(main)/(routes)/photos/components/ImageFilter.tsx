@@ -1,10 +1,9 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
-import { Doc } from "@/convex/_generated/dataModel";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardDescription,
@@ -14,12 +13,13 @@ import {
 import { FileIcon, defaultStyles } from "react-file-icon";
 import { FileColorExtension } from "@/constants/color-constant";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function ImageFilter() {
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const getFiles = useQuery(api.file.getFiles, { userID: userId as string });

@@ -15,6 +15,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { IterationCcw, Trash2 } from "lucide-react";
+import { redirect } from "next/navigation";
 
 interface TrashFileMenuProps {
   children: React.ReactNode;
@@ -29,7 +30,7 @@ export default function TrashFileMenu({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const update = useMutation(api.file.update);

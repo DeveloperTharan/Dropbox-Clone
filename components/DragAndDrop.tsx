@@ -8,6 +8,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
+import { redirect } from "next/navigation";
 
 interface CustomFile extends File {
   url?: string;
@@ -21,7 +22,7 @@ export default function DragAndDrop() {
   const params = useParams();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const inputRef = useRef<any>(null);

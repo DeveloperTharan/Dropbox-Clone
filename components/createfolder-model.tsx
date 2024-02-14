@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { redirect } from "next/navigation";
 
 export default function CreateFolder({
   children,
@@ -30,7 +31,7 @@ export default function CreateFolder({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const createFolder = useMutation(api.file.creatrFolder);

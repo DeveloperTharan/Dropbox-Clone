@@ -14,13 +14,14 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default function TrashFolderItems() {
   const { userId } = useAuth();
   const router = useRouter();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const getTrash = useQuery(api.file.getAchiveFolders, {

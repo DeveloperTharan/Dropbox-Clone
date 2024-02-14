@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
+import { redirect } from "next/navigation";
 
 export type FileType = {
     id: string;
@@ -27,7 +28,7 @@ function TableWrapper() {
     const { userId } = useAuth();
 
     if(!userId){
-      throw console.error("Not Authenticated")
+      redirect("/sign-in");
     }
   
     const Files = useQuery(api.file.getFiles, {

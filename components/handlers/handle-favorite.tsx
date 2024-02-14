@@ -7,6 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 export default function HandleFavorite({
   initialData,
@@ -22,7 +23,7 @@ export default function HandleFavorite({
   const { userId } = useAuth();
 
   if(!userId){
-    throw console.error("Not Authenticated")
+    redirect("/sign-in");
   }
 
   const update = useMutation(api.file.update);
