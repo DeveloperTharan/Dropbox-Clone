@@ -7,7 +7,7 @@ export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}) { 
   const { isLoaded, isSignedIn } = useAuth();
 
   return (
