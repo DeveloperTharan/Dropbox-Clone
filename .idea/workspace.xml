@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="87695653-ab97-4068-88bb-97cd7dddf5a4" name="Changes" comment="idea commit">
+      <change afterPath="$PROJECT_DIR$/.idea/Dropbox-Clone.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/config/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/controller/FolderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/File.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/Folder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/ApplicationErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/ExceptionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/repository/FileRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/repository/FolderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/service/FileService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/service/FolderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/utils/CUID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/NavBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/sign-in/[[...sign-in]]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/sign-up/[[...sign-up]]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/deleted/components/TrashFileItems.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/deleted/components/TrashFileMenu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/deleted/components/TrashFolderItems.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/deleted/components/TrashFolderMenu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/deleted/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/favorites/components/FavoriteItems.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/favorites/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/home/(route)/[folderId]/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/home/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/photos/components/ImageFilter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/(routes)/photos/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_components/FolderList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_components/Item.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_components/MediaSideBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_components/NavBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/_components/SideBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(main)/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(marketing)/_components/Footer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(marketing)/_components/NavBar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(marketing)/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(marketing)/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/edgestore/[...edgestore]/route.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/error.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/not-found.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/DragAndDrop.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Menu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/createfolder-model.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/folder-menu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/handlers/handle-achive.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/handlers/handle-achivefolder.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/handlers/handle-favorite.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/handlers/handle-rename.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/handlers/handle-renamefolder.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mode-toggler.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/renderValue.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/search-model.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/columns.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/data-table-pagination.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/data-table.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/table-wrapper.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/button.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/card.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/checkbox.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dialog.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/dropdown-menu.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/input.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/label.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/popover.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/select.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/sheet.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/skeleton.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/table.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/tooltip.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/color-constant.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/file-constant.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/menu-constant.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/_generated/api.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/_generated/api.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/_generated/dataModel.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/_generated/server.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/_generated/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/file.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/convex/schema.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/edgestore.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provider/ConvexClientProvider.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provider/auth-provider.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/provider/theme-provider.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/folder-icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/marketing.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/not-found.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DeveloperTharan&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DeveloperTharan/Dropbox-Clone.git&quot;,
+    &quot;accountId&quot;: &quot;f892c955-cc5e-4488-85a3-921b4d362312&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2g8ATHDjtqQzruvjrXni50JzLWP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DropboxApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;22&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/IdeaProjects/spring-boot/Dropbox-Clone/server&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="DropboxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dropbox" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.thxran.dropbox.DropboxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DropboxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dropbox" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.thxran.dropbox.DropboxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DropboxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dropbox" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.thxran.dropbox.DropboxApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87695653-ab97-4068-88bb-97cd7dddf5a4" name="Changes" comment="" />
+      <created>1715068836569</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715068836569</updated>
+      <workItem from="1715068837504" duration="1999000" />
+      <workItem from="1715073905318" duration="1181000" />
+      <workItem from="1715094366591" duration="1915000" />
+      <workItem from="1715103057221" duration="5320000" />
+    </task>
+    <task id="LOCAL-00001" summary="idea commit">
+      <option name="closed" value="true" />
+      <created>1715068924349</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715068924349</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="idea commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea commit" />
+  </component>
+</project>

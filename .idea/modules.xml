@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Dropbox-Clone.iml" filepath="$PROJECT_DIR$/.idea/Dropbox-Clone.iml" />
-      <module fileurl="file://$PROJECT_DIR$/server/dropbox/dropbox.iml" filepath="$PROJECT_DIR$/server/dropbox/dropbox.iml" />
     </modules>
   </component>
 </project>
