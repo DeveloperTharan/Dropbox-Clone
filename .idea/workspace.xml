@@ -5,24 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87695653-ab97-4068-88bb-97cd7dddf5a4" name="Changes" comment="idea commit">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/controller/AuthenticationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/jwt/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/jwt/JwtService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/request_response/AuthenticationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/request_response/AuthenticationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/request_response/RegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/request_response/RegistrationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/service/AuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Dropbox-Clone.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Dropbox-Clone.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/Folder.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/Folder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/ExceptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/ExceptionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/thxran/dropbox/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/globals.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/lib/utils.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/next.config.mjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/next.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/vercel.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tailwind.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +55,9 @@
     &quot;accountId&quot;: &quot;f892c955-cc5e-4488-85a3-921b4d362312&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -66,33 +71,39 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DropboxApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;22&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/IdeaProjects/spring-boot/Dropbox-Clone/server&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.DropboxApplication.executor": "Profiler#1",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DropboxApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "22",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/IdeaProjects/Dropbox-Clone",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
-    <configuration name="DropboxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="dropbox" />
+    <configuration name="DropboxApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="Dropbox-Clone" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.thxran.dropbox.DropboxApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,6 +147,9 @@
       <workItem from="1715154481582" duration="9310000" />
       <workItem from="1715166641299" duration="2169000" />
       <workItem from="1715171267441" duration="11000" />
+      <workItem from="1715171631847" duration="3000" />
+      <workItem from="1715171652443" duration="862000" />
+      <workItem from="1715172524268" duration="1233000" />
     </task>
     <task id="LOCAL-00001" summary="idea commit">
       <option name="closed" value="true" />
