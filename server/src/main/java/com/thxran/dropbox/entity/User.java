@@ -24,16 +24,19 @@ import java.util.Collections;
 public class User implements UserDetails, Principal {
     @Id
     private String id;
-    private String firstname;
-    private String lastname;
+
+    private String username;
 
     @Column(unique = true)
     private String email;
+
     private String password;
+    private String image_url;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
@@ -47,7 +50,7 @@ public class User implements UserDetails, Principal {
 
     @Override
     public String getName() {
-        return email;
+        return username;
     }
 
     @Override
@@ -83,9 +86,5 @@ public class User implements UserDetails, Principal {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public  String fullName() {
-        return firstname + " " + lastname;
     }
 }

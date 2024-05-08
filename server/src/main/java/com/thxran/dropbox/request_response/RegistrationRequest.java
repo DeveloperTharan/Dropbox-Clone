@@ -9,14 +9,10 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Registration_Request {
+public class RegistrationRequest {
     @NotEmpty(message = "Firstname is mandatory")
     @NotBlank(message = "Firstname is mandatory")
-    private String firstname;
-
-    @NotEmpty(message = "Lastname is mandatory")
-    @NotBlank(message = "Lastname is mandatory")
-    private String lastname;
+    private String username;
 
     @Email(message = "Email i not formatted")
     @NotEmpty(message = "Email is mandatory")

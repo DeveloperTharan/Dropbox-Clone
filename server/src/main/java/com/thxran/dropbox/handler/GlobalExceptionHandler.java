@@ -21,8 +21,8 @@ public class GlobalExceptionHandler {
                 .status(UNAUTHORIZED)
                 .body(ExceptionResponse
                         .builder()
-                        .businessErrorCode(BAD_CREDENTIALS.getCode())
-                        .businessErrorMsg(BAD_CREDENTIALS.getMessage())
+                        .applicationErrorCode(BAD_CREDENTIALS.getCode())
+                        .applicationErrorMsg(BAD_CREDENTIALS.getMessage())
                         .error(BAD_CREDENTIALS.getMessage())
                         .build()
                 );
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
                 .status(INTERNAL_SERVER_ERROR)
                 .body(ExceptionResponse
                         .builder()
-                        .businessErrorMsg("Internal Server Error")
+                        .applicationErrorMsg("Internal Server Error")
                         .error(e.getMessage())
                         .build()
                 );
