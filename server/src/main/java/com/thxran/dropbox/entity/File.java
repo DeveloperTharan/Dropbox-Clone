@@ -22,19 +22,18 @@ import java.time.LocalDateTime;
 public class File {
     @Id
     private String id;
-    private String file_name;
-    private String file_type;
-    private String file_size;
+    private String fileName;
+    private String fileType;
+    private String fileSize;
 
     @Column(nullable = false)
-    private String file_url;
+    private String fileURL;
 
-    private boolean is_archived = false;
-    private boolean is_favorite = false;
+    private boolean isArchived = false;
+    private boolean isFavorite = false;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_folder_id")
-    private Folder parentFolder;
+    @Column(nullable = false)
+    private String folderId;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
