@@ -1,9 +1,46 @@
 package com.thxran.dropbox.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.thxran.dropbox.entity.Folder;
+import com.thxran.dropbox.request_response.FolderRequest;
+import com.thxran.dropbox.request_response.FolderResponse;
+import com.thxran.dropbox.service.FolderService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/folder")
+@RequiredArgsConstructor
 public class FolderController {
+    private final FolderService service;
+
+    @PostMapping("/create")
+    public ResponseEntity<FolderResponse> createFolder(@RequestBody FolderRequest request) {
+        return ResponseEntity.accepted().body(service.createFolder(request));
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<Folder>> getFolders(@RequestParam String userId) {
+        return ResponseEntity.ok().body(service.getFolderByUser(userId));
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Folder> getFolder(@PathVariable String id) {
+        return ResponseEntity.ok().body(service.getFolderById(id));
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<FolderResponse> updateFolder(
+            @RequestParam String folderId,
+            @RequestBody String newName
+    ){
+        return ResponseEntity.ok().body(service.updateFolder(folderId, newName));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteFolder(@RequestParam String folderId){
+        return ResponseEntity.ok().body(service.deleteFolder(folderId));
+    }
 }

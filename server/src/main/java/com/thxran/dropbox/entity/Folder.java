@@ -24,9 +24,7 @@ public class Folder {
     @Id
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private String userId;
 
     private String name;
     private boolean is_archived = false;
@@ -34,12 +32,7 @@ public class Folder {
     @OneToMany(mappedBy = "parentFolder", cascade = CascadeType.REMOVE)
     private List<File> files;
 
-    @OneToMany(mappedBy = "parentFolder", cascade = CascadeType.REMOVE)
-    private List<Folder> subFolders;
-
-    @ManyToOne
-    @JoinColumn(name = "parent_folder_id")
-    private Folder parentFolder;
+    private String parentFolderId;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
