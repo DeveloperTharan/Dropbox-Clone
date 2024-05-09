@@ -27,7 +27,7 @@ public class Folder {
     private String userId;
 
     private String name;
-    private boolean is_archived = false;
+    private boolean isArchived = false;
 
     @OneToMany(mappedBy = "parentFolder", cascade = CascadeType.REMOVE)
     private List<File> files;

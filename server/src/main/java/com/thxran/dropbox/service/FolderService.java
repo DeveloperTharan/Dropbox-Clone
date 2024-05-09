@@ -6,11 +6,14 @@ import com.thxran.dropbox.repository.FolderRepository;
 import com.thxran.dropbox.repository.UserRepository;
 import com.thxran.dropbox.request_response.FolderRequest;
 import com.thxran.dropbox.request_response.FolderResponse;
+import com.thxran.dropbox.request_response.FolderTreeHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+
+import static com.thxran.dropbox.request_response.FolderTreeHandler.*;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +44,11 @@ public class FolderService {
         return folderRepository.findByUserId(user.getId()).orElse(Collections.emptyList());
     }
 
+    public Folder getFolderById(String folderId){
+        return folderRepository.findById(folderId)
+                .orElseThrow(() -> new RuntimeException("no such folder found!"));
+    }
+
     public FolderResponse updateFolder(String folderId, String newName) {
         var folder = getFolderById(folderId);
         folder.setName(newName);
@@ -54,16 +62,27 @@ public class FolderService {
                 .build();
     }
 
-    public String deleteFolder(String folderId) {
+    public String archiveFolder(String folderId) {
         var folder = getFolderById(folderId);
-        deleteFolderTree(folder);
-        folderRepository.delete(folder);
-        return folder.getName() + " " + "Deleted successfully";
+        handleFolderTree(folder, ARCHIVE);
+        folder.setArchived(true);
+        folderRepository.save(folder);
+        return folder.getName() + " " + "archived successfully";
     }
 
-    public Folder getFolderById(String folderId){
-        return folderRepository.findById(folderId)
-                .orElseThrow(() -> new RuntimeException("Parent folder not found"));
+    public String un_archiveFolder(String folderId) {
+        var folder = getFolderById(folderId);
+        handleFolderTree(folder, UN_ARCHIVE);
+        folder.setArchived(false);
+        folderRepository.save(folder);
+        return folder.getName() + " " + "archived successfully";
+    }
+
+    public String deleteFolder(String folderId) {
+        var folder = getFolderById(folderId);
+        handleFolderTree(folder, DELETE);
+        folderRepository.delete(folder);
+        return folder.getName() + " " + "deleted successfully";
     }
 
     private User getUserById(String userId){
@@ -71,14 +90,33 @@ public class FolderService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    private void deleteFolderTree(Folder folder) {
+    private void handleFolderTree(Folder folder, FolderTreeHandler handler){
         List<Folder> subfolders = folderRepository.findByParentFolderId(folder.getId()).orElseThrow(
                 () -> new RuntimeException("No subfolder found")
         );
 
         for(var subfolder: subfolders){
-            deleteFolderTree(subfolder);
-            folderRepository.delete(subfolder);
+            switch (handler){
+                case ARCHIVE:
+                    handleFolderTree(subfolder, handler);
+                    subfolder.setArchived(true);
+                    folderRepository.save(subfolder);
+                    break;
+
+                case UN_ARCHIVE:
+                    handleFolderTree(subfolder, handler);
+                    subfolder.setArchived(false);
+                    folderRepository.save(subfolder);
+                    break;
+
+                case DELETE:
+                    handleFolderTree(subfolder, handler);
+                    folderRepository.delete(subfolder);
+                    break;
+
+                default:
+                    throw new RuntimeException("Unknown handler " + handler);
+            }
         }
     }
 }

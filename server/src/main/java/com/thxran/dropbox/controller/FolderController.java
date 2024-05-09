@@ -22,25 +22,35 @@ public class FolderController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Folder>> getFolders(@RequestParam String userId) {
+    public ResponseEntity<List<Folder>> getFolders(@RequestParam("userId") String userId) {
         return ResponseEntity.ok().body(service.getFolderByUser(userId));
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Folder> getFolder(@PathVariable String id) {
+    public ResponseEntity<Folder> getFolder(@PathVariable("id") String id) {
         return ResponseEntity.ok().body(service.getFolderById(id));
     }
 
     @PatchMapping("/update")
     public ResponseEntity<FolderResponse> updateFolder(
-            @RequestParam String folderId,
+            @RequestParam("folderId") String folderId,
             @RequestBody String newName
     ){
         return ResponseEntity.ok().body(service.updateFolder(folderId, newName));
     }
 
+    @PatchMapping("/archive")
+    public ResponseEntity<String> acrchiveFolder(@RequestParam("folderId") String folderId){
+        return ResponseEntity.ok().body(service.archiveFolder(folderId));
+    }
+
+    @PatchMapping("/un_archive")
+    public ResponseEntity<String> un_acrchiveFolder(@RequestParam("folderId") String folderId){
+        return ResponseEntity.ok().body(service.un_archiveFolder(folderId));
+    }
+
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteFolder(@RequestParam String folderId){
+    public ResponseEntity<String> deleteFolder(@RequestParam("folderId") String folderId){
         return ResponseEntity.ok().body(service.deleteFolder(folderId));
     }
 }
