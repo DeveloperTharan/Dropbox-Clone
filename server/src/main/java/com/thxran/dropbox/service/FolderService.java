@@ -6,14 +6,14 @@ import com.thxran.dropbox.repository.FolderRepository;
 import com.thxran.dropbox.repository.UserRepository;
 import com.thxran.dropbox.request_response.FolderRequest;
 import com.thxran.dropbox.request_response.FolderResponse;
-import com.thxran.dropbox.request_response.FolderTreeHandler;
+import com.thxran.dropbox.enum_types.FolderTreeHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
-import static com.thxran.dropbox.request_response.FolderTreeHandler.*;
+import static com.thxran.dropbox.enum_types.FolderTreeHandler.*;
 
 @Service
 @RequiredArgsConstructor

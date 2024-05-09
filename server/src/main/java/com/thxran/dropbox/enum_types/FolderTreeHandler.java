@@ -1,4 +1,4 @@
-package com.thxran.dropbox.request_response;
+package com.thxran.dropbox.enum_types;
 
 public enum FolderTreeHandler {
     ARCHIVE,

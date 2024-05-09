@@ -11,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
@@ -28,9 +27,6 @@ public class Folder {
 
     private String name;
     private boolean isArchived = false;
-
-    @OneToMany(mappedBy = "parentFolder", cascade = CascadeType.REMOVE)
-    private List<File> files;
 
     private String parentFolderId;
 
