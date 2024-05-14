@@ -35,6 +35,9 @@ public class File {
     @Column(nullable = false)
     private String folderId;
 
+    @Column(nullable = false)
+    private String userId;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

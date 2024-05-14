@@ -10,7 +10,6 @@ import com.thxran.dropbox.enum_types.FolderTreeHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 import static com.thxran.dropbox.enum_types.FolderTreeHandler.*;
@@ -41,7 +40,9 @@ public class FolderService {
 
     public List<Folder> getFolderByUser(String userId) {
         User user = getUserById(userId);
-        return folderRepository.findByUserId(user.getId()).orElse(Collections.emptyList());
+        return folderRepository.findByUserIdAndIsArchivedFalse(user.getId()).orElseThrow(
+                () -> new RuntimeException("Folders not found")
+        );
     }
 
     public Folder getFolderById(String folderId){
@@ -68,6 +69,13 @@ public class FolderService {
         folder.setArchived(true);
         folderRepository.save(folder);
         return folder.getName() + " " + "archived successfully";
+    }
+
+    public List<Folder> getArchiveFolder(String userId) {
+        var user = getUserById(userId);
+        return folderRepository.findByUserIdAndIsArchivedTrue(user.getId()).orElseThrow(
+                () -> new RuntimeException("Folders not found")
+        );
     }
 
     public String un_archiveFolder(String folderId) {

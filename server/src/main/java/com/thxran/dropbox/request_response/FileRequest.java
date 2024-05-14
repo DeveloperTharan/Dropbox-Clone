@@ -27,4 +27,8 @@ public class FileRequest {
     @NotBlank(message = "folder missing!")
     @NotEmpty(message = "folder missing!")
     private String folderId;
+
+    @NotBlank(message = "user-id is missing!")
+    @NotEmpty(message = "user-id is missing!")
+    private String userId;
 }

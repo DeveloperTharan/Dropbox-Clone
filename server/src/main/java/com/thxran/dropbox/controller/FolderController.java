@@ -44,6 +44,11 @@ public class FolderController {
         return ResponseEntity.ok().body(service.archiveFolder(folderId));
     }
 
+    @GetMapping("/archive_folders")
+    public ResponseEntity<List<Folder>> getAcrchiveFolders(@RequestParam("userId") String userId){
+        return ResponseEntity.ok().body(service.getArchiveFolder(userId));
+    }
+
     @PatchMapping("/un_archive")
     public ResponseEntity<String> un_acrchiveFolder(@RequestParam("folderId") String folderId){
         return ResponseEntity.ok().body(service.un_archiveFolder(folderId));

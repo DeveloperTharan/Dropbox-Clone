@@ -37,12 +37,17 @@ public class FileController {
     }
 
     @PatchMapping("/archive")
-    public ResponseEntity<String> acrchiveFile(@RequestParam("fileId") String fileId){
+    public ResponseEntity<String> archiveFile(@RequestParam("fileId") String fileId){
         return ResponseEntity.ok().body(service.archiveFile(fileId));
     }
 
+    @GetMapping("/archive_files")
+    public ResponseEntity<List<File>>  getArchiveFiles(@RequestParam("userId") String userId){
+        return ResponseEntity.ok().body(service.getArchiveFolders(userId));
+    }
+
     @PatchMapping("/un_archive")
-    public ResponseEntity<String> un_acrchiveFile(@RequestParam("fileId") String fileId){
+    public ResponseEntity<String> un_archiveFile(@RequestParam("fileId") String fileId){
         return ResponseEntity.ok().body(service.un_archiveFile(fileId));
     }
 

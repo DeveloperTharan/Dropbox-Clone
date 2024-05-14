@@ -16,6 +16,7 @@ public class FileResponse {
     private boolean isArchived;
     private boolean isFavorite;
     private String folder;
+    private String user;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

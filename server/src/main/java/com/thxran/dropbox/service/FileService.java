@@ -2,10 +2,12 @@ package com.thxran.dropbox.service;
 
 import com.thxran.dropbox.entity.File;
 import com.thxran.dropbox.entity.Folder;
+import com.thxran.dropbox.entity.User;
 import com.thxran.dropbox.enum_types.FileHandler;
 import com.thxran.dropbox.enum_types.FileUpdateType;
 import com.thxran.dropbox.repository.FileRepository;
 import com.thxran.dropbox.repository.FolderRepository;
+import com.thxran.dropbox.repository.UserRepository;
 import com.thxran.dropbox.request_response.FileRequest;
 import com.thxran.dropbox.request_response.FileResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import static com.thxran.dropbox.enum_types.FileHandler.*;
 public class FileService {
     private final FolderRepository folderRepository;
     private final FileRepository fileRepository;
+    private final UserRepository userRepository;
 
     public FileResponse uplodeFile(FileRequest request) {
         var file = File.builder()
@@ -30,6 +33,7 @@ public class FileService {
                 .fileSize(request.getFileSize())
                 .fileURL(request.getFileURL())
                 .folderId(request.getFolderId())
+                .userId(request.getUserId())
                 .build();
         var savedFile = fileRepository.save(file);
 
@@ -40,6 +44,7 @@ public class FileService {
                 .fileType(savedFile.getFileType())
                 .fileURL(savedFile.getFileURL())
                 .folder(savedFile.getFolderId())
+                .user(savedFile.getUserId())
                 .isArchived(savedFile.isArchived())
                 .isFavorite(savedFile.isFavorite())
                 .createdAt(savedFile.getCreatedAt())
@@ -48,7 +53,7 @@ public class FileService {
 
     public List<File> getFilesByFolder(String folderId) {
         var folder = getFolderById(folderId);
-        return fileRepository.findByFolderId(folder.getId()).orElse(Collections.emptyList());
+        return fileRepository.findByFolderIdAndIsArchivedFalse(folder.getId()).orElse(Collections.emptyList());
     }
 
     @SneakyThrows
@@ -79,6 +84,11 @@ public class FileService {
         return file.getFileName() + " " + "archive successfully";
     }
 
+    public List<File> getArchiveFolders(String userId) {
+        var user = getUserById(userId);
+        return fileRepository.findByUserIdAndIsArchivedTrue(user.getId()).orElse(Collections.emptyList());
+    }
+
     public String un_archiveFile(String fileId) {
         var file = getFileById(fileId);
         handleFilePresents(file, UN_ARCHIVE);
@@ -99,6 +109,12 @@ public class FileService {
     private File getFileById(String fileId) {
         return fileRepository.findById(fileId).orElseThrow(
                 () -> new RuntimeException("no such file found!")
+        );
+    }
+
+    private User getUserById(String userId) {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new RuntimeException("no such user found!")
         );
     }
 
