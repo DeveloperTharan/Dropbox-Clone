@@ -2,6 +2,7 @@ package com.thxran.dropbox.service;
 
 import com.thxran.dropbox.entity.Folder;
 import com.thxran.dropbox.entity.User;
+import com.thxran.dropbox.repository.FileRepository;
 import com.thxran.dropbox.repository.FolderRepository;
 import com.thxran.dropbox.repository.UserRepository;
 import com.thxran.dropbox.request_response.FolderRequest;
@@ -10,6 +11,7 @@ import com.thxran.dropbox.enum_types.FolderTreeHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.thxran.dropbox.enum_types.FolderTreeHandler.*;
@@ -19,6 +21,7 @@ import static com.thxran.dropbox.enum_types.FolderTreeHandler.*;
 public class FolderService {
     private final UserRepository userRepository;
     private final FolderRepository folderRepository;
+    private final FileRepository fileRepository;
 
     public FolderResponse createFolder(FolderRequest request) {
         var folder = Folder.builder()
@@ -88,7 +91,12 @@ public class FolderService {
 
     public String deleteFolder(String folderId) {
         var folder = getFolderById(folderId);
+
         handleFolderTree(folder, DELETE);
+
+        var file = fileRepository.findByFolderId(folderId).orElse(Collections.emptyList());
+        fileRepository.deleteAll(file);
+
         folderRepository.delete(folder);
         return folder.getName() + " " + "deleted successfully";
     }
@@ -118,6 +126,8 @@ public class FolderService {
                     break;
 
                 case DELETE:
+                    var file = fileRepository.findByFolderId(subfolder.getId()).orElse(Collections.emptyList());
+                    fileRepository.deleteAll(file);
                     handleFolderTree(subfolder, handler);
                     folderRepository.delete(subfolder);
                     break;
