@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: dropbox
+    security:
+      jwt:
+        secret-key: 931f9ef08d0750791fdf4048d04adb53198e90edcbee08bfc5ad752323fee103
+        expiration: 8640000
+  datasource:
+    url: jdbc:postgresql://aws-0-ap-south-1.pooler.supabase.com:5432/postgres
+    username: postgres.jesoevjidwgpigqviixl
+    password: Susila@pilavadiyan7
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+server:
+  servlet:
+    context-path: /api/v1
