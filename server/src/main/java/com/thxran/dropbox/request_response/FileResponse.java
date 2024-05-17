@@ -12,6 +12,7 @@ public class FileResponse {
     private String fileName;
     private String fileType;
     private String fileSize;
+    private String fileStoragePath;
     private String fileURL;
     private boolean isArchived;
     private boolean isFavorite;

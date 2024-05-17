@@ -26,11 +26,12 @@ public class FileService {
     private final FileRepository fileRepository;
     private final UserRepository userRepository;
 
-    public FileResponse uplodeFile(FileRequest request) {
+    public FileResponse uploadFile(FileRequest request) {
         var file = File.builder()
                 .fileName(request.getFileName())
                 .fileType(request.getFileType())
                 .fileSize(request.getFileSize())
+                .fileStoragePath(request.getFileStoragePath())
                 .fileURL(request.getFileURL())
                 .folderId(request.getFolderId())
                 .userId(request.getUserId())
@@ -42,6 +43,7 @@ public class FileService {
                 .fileName(savedFile.getFileName())
                 .fileSize(savedFile.getFileSize())
                 .fileType(savedFile.getFileType())
+                .fileStoragePath(savedFile.getFileStoragePath())
                 .fileURL(savedFile.getFileURL())
                 .folder(savedFile.getFolderId())
                 .user(savedFile.getUserId())
@@ -49,6 +51,11 @@ public class FileService {
                 .isFavorite(savedFile.isFavorite())
                 .createdAt(savedFile.getCreatedAt())
                 .build();
+    }
+
+    public List<File> getAllFiles(String userId) {
+        var user = getUserById(userId);
+        return fileRepository.findByUserId(user.getId()).orElse(Collections.emptyList());
     }
 
     public List<File> getFilesByFolder(String folderId) {
@@ -64,7 +71,7 @@ public class FileService {
                 file.setFileName(newname);
                 break;
             case ISFAVORITE:
-                file.setFavorite(true);
+                file.setFavorite(!file.isFavorite());
                 break;
             default:
                 throw new Exception("Unknown type" + " " + type);
@@ -76,6 +83,11 @@ public class FileService {
                 .isFavorite(savedFile.isFavorite())
                 .updatedAt(savedFile.getUpdatedAt())
                 .build();
+    }
+
+    public List<File> getFavoriteFiles(String userId) {
+        var user = getUserById(userId);
+        return fileRepository.findByUserIdAndIsFavoriteTrue(user.getId()).orElse(Collections.emptyList());
     }
 
     public String archiveFile(String fileId) {
@@ -122,9 +134,11 @@ public class FileService {
         switch (handle){
             case ARCHIVE:
                 file.setArchived(true);
+                fileRepository.save(file);
                 break;
             case UN_ARCHIVE:
                 file.setArchived(false);
+                fileRepository.save(file);
                 break;
             case DELETE:
                 fileRepository.delete(file);
@@ -132,6 +146,5 @@ public class FileService {
             default:
                 throw new RuntimeException("Unknown handle" + handle);
         }
-        fileRepository.save(file);
     }
 }

@@ -20,6 +20,10 @@ public class FileRequest {
     @NotEmpty(message = "file size missing!")
     private String fileSize;
 
+    @NotBlank(message = "file size missing!")
+    @NotEmpty(message = "file size missing!")
+    private String fileStoragePath;
+
     @NotBlank(message = "file url missing!")
     @NotEmpty(message = "file url missing!")
     private String fileURL;

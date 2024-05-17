@@ -25,6 +25,7 @@ public class File {
     private String fileName;
     private String fileType;
     private String fileSize;
+    private String fileStoragePath;
 
     @Column(nullable = false)
     private String fileURL;

@@ -17,9 +17,14 @@ import java.util.List;
 public class FileController {
     private final FileService service;
 
-    @PostMapping("/uplode")
-    public ResponseEntity<FileResponse> uplodeFile(@RequestBody FileRequest request){
-        return ResponseEntity.accepted().body(service.uplodeFile(request));
+    @PostMapping("/upload")
+    public ResponseEntity<FileResponse> uploadFile(@RequestBody FileRequest request){
+        return ResponseEntity.accepted().body(service.uploadFile(request));
+    }
+
+    @GetMapping("get_all_files")
+    public ResponseEntity<List<File>> getAllFiles(@RequestParam("userId") String userId){
+        return ResponseEntity.ok().body(service.getAllFiles(userId));
     }
 
     @GetMapping("/get")
@@ -30,10 +35,15 @@ public class FileController {
     @PatchMapping("/update")
     public ResponseEntity<FileResponse> updateFile(
             @RequestParam("fileId") String fileId,
-            @RequestBody FileUpdateType type,
+            @RequestParam("type") FileUpdateType type,
             @RequestBody(required = false) String newname
             ){
         return ResponseEntity.ok().body(service.updateFile(fileId, type, newname));
+    }
+
+    @GetMapping("/favorite_files")
+    public ResponseEntity<List<File>> getFavoriteFiles(@RequestParam("userId") String userId){
+        return ResponseEntity.ok().body(service.getFavoriteFiles(userId));
     }
 
     @PatchMapping("/archive")
