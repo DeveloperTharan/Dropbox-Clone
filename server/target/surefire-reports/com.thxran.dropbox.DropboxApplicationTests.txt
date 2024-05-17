@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.thxran.dropbox.DropboxApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.03 s -- in com.thxran.dropbox.DropboxApplicationTests
