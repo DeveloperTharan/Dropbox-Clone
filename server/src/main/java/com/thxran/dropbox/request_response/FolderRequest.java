@@ -10,7 +10,7 @@ import lombok.Getter;
 public class FolderRequest {
     @NotEmpty(message = "user_id is missing!")
     @NotBlank(message = "user_id is missing!")
-    private String user_id;
+    private String userId;
 
     private String parentfolder_id;
 

@@ -27,7 +27,7 @@ public class FolderService {
         var folder = Folder.builder()
                 .name(request.getFolder_name())
                 .parentFolderId(request.getParentfolder_id())
-                .userId(request.getUser_id())
+                .userId(request.getUserId())
                 .build();
 
         var savedFolder = folderRepository.save(folder);
