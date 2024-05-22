@@ -83,7 +83,7 @@ export const Dashboard = () => {
               </CardContent>
             </Card>
           )}
-          {data?.map((file: FileType) => {
+          {data?.map((file) => {
             const type = file?.fileType;
             const extension = type.split("/")[1];
             return (

@@ -14,11 +14,8 @@ import {
 
 import { AlignJustify, Bell, Grip, HelpCircle, Search } from "lucide-react";
 import { UserMenu } from "./user-menu";
-import { useOpenSearchModel } from "@/hooks/use-open";
 
 export const NavBar = () => {
-  const { onOpen } = useOpenSearchModel();
-
   return (
     <div className="w-full flex items-center py-5 z-50 bg-background sticky top-0">
       <div className="md:hidden px-3" role="button">
@@ -32,7 +29,6 @@ export const NavBar = () => {
           p-3 gap-x-2 hover:border-gray-900 dark:border-gray-900 dark:hover:border-neutral-400
           cursor-text"
           role="button"
-          onClick={onOpen}
         >
           <div className="flex items-center justify-center gap-x-2">
             <span>

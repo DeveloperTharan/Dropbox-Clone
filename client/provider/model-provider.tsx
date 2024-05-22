@@ -7,8 +7,6 @@ import { FolderDeleteModel } from "@/components/models/delete-folder";
 import { RenameFileModel } from "@/components/models/rename-file";
 import { RenameFolderModel } from "@/components/models/rename-folder";
 
-import { SearchModel } from "@/components/models/search-model";
-
 export const ModelProvider = () => {
   return (
     <>
@@ -18,8 +16,6 @@ export const ModelProvider = () => {
 
       <FileDeleteModel />
       <RenameFileModel />
-
-      <SearchModel />
     </>
   );
 };
