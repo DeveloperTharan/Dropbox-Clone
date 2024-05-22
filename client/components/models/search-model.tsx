@@ -42,13 +42,11 @@ export const SearchModel = () => {
   const fileQuery = useGetAllFiles();
   const folderQuery = useGetFolders();
 
-  if (!fileQuery.data || !folderQuery.data) return;
-
   return (
     <>
       <CommandDialog open={isOpen} onOpenChange={onClose}>
         <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
+        {/* <CommandList>
           <CommandEmpty>No folder or file found.</CommandEmpty>
           {(fileQuery.data?.length === 0 || folderQuery.data?.length === 0) && (
             <CommandEmpty>No results found.</CommandEmpty>
@@ -134,7 +132,7 @@ export const SearchModel = () => {
               ))}
             </CommandGroup>
           )}
-        </CommandList>
+        </CommandList> */}
       </CommandDialog>
     </>
   );
