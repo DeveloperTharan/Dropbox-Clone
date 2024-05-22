@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 
-import { auth } from "@/action/auth";
-import { Footer } from "@/components/landing/footer";
-import { NavBar } from "@/components/landing/navbar";
+import { Footer } from "./_components/footer";
+import { NavBar } from "./_components/navbar";
 
 export const metadata: Metadata = {
   title: "Dropbox.com",
@@ -15,10 +13,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-
-  if (session) return redirect("/dashboard");
-
   return (
     <div className="overflow-x-hidden h-auto min-h-full w-full">
       <NavBar />

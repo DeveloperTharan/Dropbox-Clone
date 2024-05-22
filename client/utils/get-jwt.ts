@@ -1,3 +1,5 @@
+"use server";
+
 import { redis } from "@/lib/redis";
 
 export const getJwt = async (userId: string) => {

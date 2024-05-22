@@ -1,8 +1,7 @@
-import { RiLoader2Fill } from "react-icons/ri";
-
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 const spinnerVariants = cva("text-neutral-200 animate-spin", {
   variants: {
@@ -21,5 +20,5 @@ const spinnerVariants = cva("text-neutral-200 animate-spin", {
 interface SpinnerProps extends VariantProps<typeof spinnerVariants> {}
 
 export const Spinner = ({ size }: SpinnerProps) => {
-  return <RiLoader2Fill className={cn(spinnerVariants({ size }))} />;
+  return <Loader2 className={cn(spinnerVariants({ size }))} />;
 };

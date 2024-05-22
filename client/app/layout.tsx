@@ -1,8 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/provider/theme-provider";
+import { QueryClientProviders } from "@/provider/query-provider";
+import { ModelProvider } from "@/provider/model-provider";
 
 export const metadata: Metadata = {
   title: "Dropbox.com",
@@ -25,15 +27,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster position="top-right" richColors expand={true} />
-          {children}
-        </ThemeProvider>
+        <QueryClientProviders>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ModelProvider />
+            <Toaster />
+            {children}
+          </ThemeProvider>
+        </QueryClientProviders>
       </body>
     </html>
   );

@@ -1,5 +1,3 @@
-import { boolean, string } from "zod";
-
 export type FileType = {
   id: string;
   fileName: string;

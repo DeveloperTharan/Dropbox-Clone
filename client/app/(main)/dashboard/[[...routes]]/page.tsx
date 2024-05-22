@@ -1,8 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
 
-import { Routes } from "@/components/main/routes";
-import { Dashboard } from "@/components/main/pages/dashboard";
+import { Routes } from "./_components/routes";
+import { Dashboard } from "./_components/dashboard";
 
 export async function generateMetadata({
   params,

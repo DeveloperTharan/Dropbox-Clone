@@ -3,7 +3,7 @@
 import { z } from "zod";
 import axios from "axios";
 import { renameFile, uploadSchema as uploadSchema } from "@/schema/file";
-import { getUserId } from "@/utils/get-user-id";
+import { getUserId } from "@/utils/get-userId";
 import { getJwt } from "@/utils/get-jwt";
 
 const apiBaseUrl = process.env.API_BASE_URL!;
@@ -27,6 +27,45 @@ export const uploadFile = async (data: z.infer<typeof uploadSchema>) => {
     return { success: "File uploaded successfully!" };
   } catch (error) {
     console.log("FILE_UPLOAD_ERROR", error);
+    return { error: "something went's wrong" };
+  }
+};
+
+export const getAllFiles = async () => {
+  try {
+    const userId = getUserId();
+    if (!userId) return { error: "Unauthorized!" };
+
+    const res = await axios.get(
+      `${apiBaseUrl}/file/get_all_files?userId=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${await getJwt(userId)}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    console.log("FILE_GET_ERROR", error);
+    return { error: "something went's wrong" };
+  }
+};
+
+export const getFilesByFolderId = async (Id: string) => {
+  try {
+    const userId = getUserId();
+    if (!userId) return { error: "Unauthorized!" };
+
+    const res = await axios.get(`${apiBaseUrl}/file/get?folderId=${Id}`, {
+      headers: {
+        Authorization: `Bearer ${await getJwt(userId)}`,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.log("FILE_GET_ERROR", error);
     return { error: "something went's wrong" };
   }
 };
@@ -58,6 +97,27 @@ export const RenameFile = async (
   } catch (error) {
     console.log("FOLDER_RENAME_ERROR", error);
     return { error: "Something went's wrong try again!" };
+  }
+};
+
+export const getFavoriteFiles = async () => {
+  try {
+    const userId = getUserId();
+    if (!userId) return { error: "Unauthorized!" };
+
+    const res = await axios.get(
+      `${apiBaseUrl}/file/favorite_files?userId=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${await getJwt(userId)}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    console.log("FILE_GET_ERROR", error);
+    return { error: "something went's wrong" };
   }
 };
 
@@ -108,6 +168,27 @@ export const ArchiveFile = async (fileId: string) => {
   } catch (error) {
     console.log("FILE_ARCHIVE_ERROR", error);
     return { error: "Something went wrong. Please try again!" };
+  }
+};
+
+export const getArchiveFiles = async () => {
+  try {
+    const userId = getUserId();
+    if (!userId) return { error: "Unauthorized!" };
+
+    const res = await axios.get(
+      `${apiBaseUrl}/file/archive_files?userId=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${await getJwt(userId)}`,
+        },
+      }
+    );
+
+    return res.data;
+  } catch (error) {
+    console.log("FILE_GET_ERROR", error);
+    return { error: "something went's wrong" };
   }
 };
 

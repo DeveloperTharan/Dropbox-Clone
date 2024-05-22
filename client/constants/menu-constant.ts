@@ -1,8 +1,5 @@
 import {
   Cylinder,
-  ImageDown,
-  Waypoints,
-  PencilLine,
   Trash,
   FileHeart,
   LayoutDashboard,

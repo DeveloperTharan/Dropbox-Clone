@@ -8,7 +8,7 @@ export const StructureData = (
   folderArray: FolderType[] | undefined,
   parentId: string | null = null
 ): FolderNode[] | undefined => {
-  if (!folderArray) return undefined;
+  if (!Array.isArray(folderArray)) return undefined;
 
   const convertedArray = folderArray.map((doc) => ({
     ...doc,

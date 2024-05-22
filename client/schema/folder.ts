@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const createFolderSchema = z.object({
-  user_id: z.string(),
+  userId: z.string().optional(),
   folder_name: z
     .string()
     .min(2, {
