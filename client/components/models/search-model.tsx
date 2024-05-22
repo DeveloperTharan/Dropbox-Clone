@@ -42,6 +42,8 @@ export const SearchModel = () => {
   const fileQuery = useGetAllFiles();
   const folderQuery = useGetFolders();
 
+  if (!fileQuery.data || !folderQuery.data) return;
+
   return (
     <>
       <CommandDialog open={isOpen} onOpenChange={onClose}>
