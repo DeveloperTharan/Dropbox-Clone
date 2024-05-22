@@ -69,9 +69,6 @@ export const SearchModel = () => {
         <CommandInput placeholder="Type a file or folder name to search..." />
         <CommandList>
           <CommandEmpty>No folder or file found.</CommandEmpty>
-          {fileQuery?.data?.length === 0 && (
-            <CommandGroup heading="Files">No files found.</CommandGroup>
-          )}
           {fileQuery?.data && (
             <CommandGroup heading="Files">
               {fileQuery?.data?.map((file: FileType) => {
