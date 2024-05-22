@@ -20,17 +20,17 @@ export const Documents = () => {
       </div>
     );
 
-  const { categories } = categorizeFiles(data ?? data);
+  const { categories } = categorizeFiles(data);
 
   return (
     <>
-      {categories.documents?.length === 0 ? (
+      {categories?.documents?.length === 0 ? (
         <p className="w-full h-[calc(100vh-50vh)] flex items-center justify-center text-neutral-400">
           No files are in Documents
         </p>
       ) : (
         <div className="flex  flex-row flex-wrap justify-normal items-center gap-5 my-4">
-          {categories.documents?.map((file: FileType) => {
+          {categories?.documents?.map((file: FileType) => {
             const type = file?.fileType;
             const extension = type.split("/")[1];
             return (

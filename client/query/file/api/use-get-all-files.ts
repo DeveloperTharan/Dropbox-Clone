@@ -1,4 +1,5 @@
 import { getAllFiles } from "@/action/file";
+import { FileType } from "@/types/file-type";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetAllFiles = () => {
@@ -7,7 +8,9 @@ export const useGetAllFiles = () => {
     queryFn: async () => {
       const response = await getAllFiles();
 
-      return response;
+      const data: FileType[] = response;
+
+      return data;
     },
   });
 

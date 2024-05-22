@@ -1,6 +1,14 @@
 import { FileType } from "@/types/file-type";
 
-export const categorizeFiles = (files: FileType[]) => {
+export const categorizeFiles = (files: FileType[] | undefined) => {
+  if (!files)
+    return {
+      image: [] as FileType[],
+      media: [] as FileType[],
+      documents: [] as FileType[],
+      unknown: [] as FileType[],
+    };
+
   const categories = {
     image: [] as FileType[],
     media: [] as FileType[],

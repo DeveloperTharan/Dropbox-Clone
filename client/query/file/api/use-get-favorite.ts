@@ -1,4 +1,5 @@
 import { getFavoriteFiles, getFilesByFolderId } from "@/action/file";
+import { FileType } from "@/types/file-type";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetFavoriteFiles = () => {
@@ -6,8 +7,9 @@ export const useGetFavoriteFiles = () => {
     queryKey: ["favorite_files"],
     queryFn: async () => {
       const response = await getFavoriteFiles();
+      const data: FileType[] = response;
 
-      return response;
+      return data;
     },
   });
 

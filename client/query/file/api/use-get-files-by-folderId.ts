@@ -1,4 +1,5 @@
 import { getFilesByFolderId } from "@/action/file";
+import { FileType } from "@/types/file-type";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetFilesByFolderId = (id: string) => {
@@ -7,7 +8,9 @@ export const useGetFilesByFolderId = (id: string) => {
     queryFn: async () => {
       const response = await getFilesByFolderId(id);
 
-      return response;
+      const data: FileType[] = response;
+
+      return data;
     },
   });
 

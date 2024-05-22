@@ -127,7 +127,7 @@ export const Dashboard = () => {
   );
 };
 
-const getRecentFiles = (files: FileType[]) => {
+const getRecentFiles = (files: FileType[] | undefined) => {
   if (!files) return [];
 
   const now = new Date();

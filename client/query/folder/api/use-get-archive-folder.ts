@@ -1,4 +1,5 @@
 import { getArchiveFolders, getFolders } from "@/action/folder";
+import { FolderType } from "@/types/folder-type";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetArchiveFolders = () => {
@@ -6,7 +7,9 @@ export const useGetArchiveFolders = () => {
     queryKey: ["archive_folders"],
     queryFn: async () => {
       const response = await getArchiveFolders();
-      return response;
+      const data: FolderType[] = response;
+
+      return data;
     },
   });
 

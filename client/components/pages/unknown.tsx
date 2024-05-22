@@ -24,13 +24,13 @@ export const Unknown = () => {
 
   return (
     <>
-      {categories.unknown?.length === 0 ? (
+      {categories?.unknown?.length === 0 ? (
         <p className="w-full h-[calc(100vh-50vh)] flex items-center justify-center text-neutral-400">
           No files are in unknown.
         </p>
       ) : (
         <div className="flex  flex-row flex-wrap justify-normal items-center gap-5 my-4">
-          {categories.unknown?.map((file: FileType) => {
+          {categories?.unknown?.map((file: FileType) => {
             const type = file?.fileType;
             const extension = type.split("/")[1];
             return (

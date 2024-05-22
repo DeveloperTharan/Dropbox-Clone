@@ -24,13 +24,13 @@ export const Media = () => {
 
   return (
     <>
-      {categories.media?.length === 0 ? (
+      {categories?.media?.length === 0 ? (
         <p className="w-full h-[calc(100vh-50vh)] flex items-center justify-center text-neutral-400">
           No files are in media.
         </p>
       ) : (
         <div className="flex  flex-row flex-wrap justify-normal items-center gap-5 my-4">
-          {categories.media?.map((file: FileType) => {
+          {categories?.media?.map((file: FileType) => {
             const type = file?.fileType;
             const extension = type.split("/")[1];
             return (
