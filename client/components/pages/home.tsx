@@ -16,12 +16,19 @@ export const Home = () => {
 
   const { data, isLoading } = useGetFolders();
 
+  if (isLoading) {
+    return (
+      <div className="flex items-start justify-start gap-5 flex-wrap mx-auto">
+        {isLoading &&
+          Array.from({ length: 15 }).map((_, index) => (
+            <Skeleton key={index} className="min-w-52 h-52 rounded-lg flex-1" />
+          ))}
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-start justify-start gap-5 flex-wrap mx-auto">
-      {isLoading &&
-        Array.from({ length: 15 }).map((_, index) => (
-          <Skeleton key={index} className="min-w-52 h-52 rounded-lg flex-1" />
-        ))}
       {data?.length! === 0 && (
         <p className="w-full h-[calc(100vh-20vh)] flex items-center justify-center text-neutral-400">
           No folders

@@ -42,28 +42,39 @@ export const SearchModel = () => {
   const fileQuery = useGetAllFiles();
   const folderQuery = useGetFolders();
 
+  if (fileQuery.isLoading || folderQuery.isLoading) {
+    return (
+      <CommandDialog open={isOpen} onOpenChange={onClose}>
+        <CommandInput placeholder="Type a file or folder name to search..." />
+        <CommandList>
+          <CommandGroup heading="Files">
+            <div className="w-full my-10 flex items-center justify-center">
+              <Spinner size={"lg"} />
+            </div>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Folders">
+            <div className="w-full my-10 flex items-center justify-center">
+              <Spinner size={"lg"} />
+            </div>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    );
+  }
+
   return (
     <>
       <CommandDialog open={isOpen} onOpenChange={onClose}>
-        <CommandInput placeholder="Type a command or search..." />
-        {/* <CommandList>
+        <CommandInput placeholder="Type a file or folder name to search..." />
+        <CommandList>
           <CommandEmpty>No folder or file found.</CommandEmpty>
-          {(fileQuery.data?.length === 0 || folderQuery.data?.length === 0) && (
-            <CommandEmpty>No results found.</CommandEmpty>
-          )}
-          {fileQuery.isLoading && (
-            <CommandGroup heading="Files">
-              <div className="w-full my-10 flex items-center justify-center">
-                <Spinner size={"lg"} />
-              </div>
-            </CommandGroup>
-          )}
-          {fileQuery.data?.length === 0 && (
+          {fileQuery?.data?.length === 0 && (
             <CommandGroup heading="Files">No files found.</CommandGroup>
           )}
-          {fileQuery.data && (
+          {fileQuery?.data && (
             <CommandGroup heading="Files">
-              {fileQuery.data?.map((file: FileType) => {
+              {fileQuery?.data?.map((file: FileType) => {
                 const type = file?.fileType;
                 const extension = type.split("/")[1];
 
@@ -98,19 +109,9 @@ export const SearchModel = () => {
             </CommandGroup>
           )}
           <CommandSeparator />
-          {folderQuery.isLoading && (
+          {folderQuery?.data && (
             <CommandGroup heading="Folders">
-              <div className="w-full my-10 flex items-center justify-center">
-                <Spinner size={"lg"} />
-              </div>
-            </CommandGroup>
-          )}
-          {folderQuery.data?.length === 0 && (
-            <CommandGroup heading="Files">No files found.</CommandGroup>
-          )}
-          {folderQuery.data && (
-            <CommandGroup heading="Folders">
-              {folderQuery.data?.map((folder: FolderType) => (
+              {folderQuery?.data?.map((folder: FolderType) => (
                 <CommandItem key={folder.id}>
                   <div className="w-full flex items-center justify-between">
                     <div className="flex items-center gap-x-2">
@@ -132,7 +133,7 @@ export const SearchModel = () => {
               ))}
             </CommandGroup>
           )}
-        </CommandList> */}
+        </CommandList>
       </CommandDialog>
     </>
   );

@@ -22,8 +22,6 @@ export const Dashboard = () => {
 
   const { data, isLoading } = useGetAllFiles();
 
-  const recentFiles = getRecentFiles(data);
-
   if (isLoading) {
     return (
       <div className="w-full h-auto">
@@ -85,7 +83,7 @@ export const Dashboard = () => {
               </CardContent>
             </Card>
           )}
-          {recentFiles?.map((file: FileType) => {
+          {data?.map((file: FileType) => {
             const type = file?.fileType;
             const extension = type.split("/")[1];
             return (
@@ -125,17 +123,4 @@ export const Dashboard = () => {
       </div>
     </>
   );
-};
-
-const getRecentFiles = (files: FileType[] | undefined) => {
-  if (!files) return [];
-
-  const now = new Date();
-
-  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-
-  return files?.filter((file) => {
-    const createdAt = new Date(file.createdAt);
-    return createdAt >= sevenDaysAgo;
-  });
 };
