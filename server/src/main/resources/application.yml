@@ -4,19 +4,52 @@ spring:
     security:
       jwt:
         secret-key: 931f9ef08d0750791fdf4048d04adb53198e90edcbee08bfc5ad752323fee103
-        expiration: 8640000
+        expiration: 8640000 # 2.4 hours (in ms). Consider using '2h24m' if using .properties.
   datasource:
-    url: jdbc:postgresql://ep-bitter-heart-a8r92nax-pooler.eastus2.azure.neon.tech/dropbox
+    url: jdbc:postgresql://ep-bitter-heart-a8r92nax-pooler.eastus2.azure.neon.tech:5432/dropbox?sslmode=require&channelBinding=require # ⚠️ Added port and SSL/TLS as discussed
     username: neondb_owner
     password: npg_LKfT5O3HamiG
+    # ------------------------------------------------------------------
+    # 🌟 HIKARICP CONNECTION POOL CONFIGURATION (Production Tweaks)
+    # ------------------------------------------------------------------
+    # The default is HikariCP. These properties are prefixed with 'spring.datasource.hikari.'
+    hikari:
+      # Max concurrent connections. Rule of thumb: (core * 2) + effective_spindle.
+      # Start with a small number (e.g., 10-20) and tune based on database capacity.
+      maximum-pool-size: 15
+      # Minimum idle connections to keep alive. Should be less than or equal to maximum-pool-size.
+      minimum-idle: 5
+      # Max time (ms) a connection can sit idle in the pool before being removed.
+      # Should be slightly less than the database's connection timeout.
+      idle-timeout: 600000 # 10 minutes
+      # Max time (ms) a connection can be used from the pool.
+      max-lifetime: 1800000 # 30 minutes. Prevents connection-related memory leaks/stale connections.
+      # Max time (ms) to wait for a connection from the pool before throwing an exception.
+      connection-timeout: 30000 # 30 seconds
+      # Test query to validate the connection before returning it from the pool.
+      # PostgreSQL automatically detects this, but it's good practice.
+      connection-test-query: SELECT 1
+      # A user-friendly name for the connection pool logging.
+      pool-name: Dropbox-HikariPool
+
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      # ⚠️ Set to 'validate' or 'none' for production to prevent accidental data loss.
+      # 'update' is dangerous in a large-scale application unless managed carefully.
+      ddl-auto: validate
+    # ⚠️ Disable show-sql and format-sql in production to reduce logging overhead,
+    # unless you are actively debugging a performance issue.
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format-sql: false
+        # Critical for performance: Hibernate's dialect for PostgreSQL
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        # Batch size for updates/inserts to reduce database round trips
+        jdbc:
+          batch_size: 50
     database: postgresql
+
 server:
   servlet:
     context-path: /api/v1

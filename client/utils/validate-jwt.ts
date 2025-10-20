@@ -1,4 +1,4 @@
-import { redis } from "@/lib/redis";
+import { client as redis } from "@/lib/redis";
 import { JwtPayload } from "jwt-decode";
 
 export const validateJWT = async (token: JwtPayload, id: string) => {

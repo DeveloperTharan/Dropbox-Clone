@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import axios from "axios";
-import { redis } from "@/lib/redis";
+import { client as redis  } from "@/lib/redis";
 import { cookies } from "next/headers";
 import { jwtDecode } from "jwt-decode";
 import { signUpSchema, signInSchema } from "@/schema/auth";

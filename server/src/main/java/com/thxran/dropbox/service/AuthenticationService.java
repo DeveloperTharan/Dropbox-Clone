@@ -38,11 +38,18 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse signin(AuthenticationRequest request) {
-        var authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var userData = userRepository.findByEmail(request.getEmail());
+        if (userData.isEmpty()) {
+            throw new RuntimeException("User Not Found!");
+        }
+
+        User user = userData.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Incorrect password");
+        }
 
         var claims = new HashMap<String, Object>();
-        var user = (User) authentication.getPrincipal();
 
         claims.put("username", user.getName());
         claims.put("image_url", user.getImage_url() != null ? user.getImage_url() : "");
